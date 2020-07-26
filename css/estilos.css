@@ -1,0 +1,231 @@
+/*creacion del grid*/
+.gridHeader{
+    grid-area: gridHeader;
+}
+.gridMenu{
+    grid-area: gridMenu;
+    overflow-x: hidden;
+    width: 260px;
+}
+.Container{
+    grid-area: gridContainer;
+    padding-left: 1em;
+}
+.grid-container{
+    width: 100%;
+    height: 100vh;
+    display: grid;
+    grid-template-columns: 260px auto;
+    grid-template-rows: 50px auto;
+    column-gap: 0px;
+    row-gap: 0px;
+    grid-template-areas: "gridHeader gridHeader"
+                        "gridMenu gridContainer" ;
+}
+.show{
+    display: block;
+}
+.hide{
+    display: none;
+}
+/*creacion del grid*/
+/*seccion del header*/
+header{
+    width: 100%;
+    height: 50px;
+    overflow-x: hidden;
+    overflow-y: hidden;
+    position: relative;
+}
+.blue_bg{
+    width: 100%;
+    height: 100%;
+    background: url(../img/portada1.png);
+    background-size: cover;
+    background-color: dodgerblue;
+
+}
+.white_bg{
+    width: 100%;
+    max-height: 100%;
+    display: flex;
+    background: rgb(3,4,94);
+    background: -moz-linear-gradient(90deg, rgba(3,4,94,1) 0%, rgba(0,150,199,1) 61%, rgba(72,202,228,1) 89%);
+    background: -webkit-linear-gradient(90deg, rgba(3,4,94,1) 0%, rgba(0,150,199,1) 61%, rgba(72,202,228,1) 89%);
+    background: linear-gradient(90deg, rgba(3,4,94,1) 0%, rgba(0,150,199,1) 61%, rgba(72,202,228,1) 89%);
+    position: absolute;
+    bottom: 0;
+    align-items: center;
+    justify-content: space-between;
+    z-index: 1;
+}
+.white_bg > h1{
+    color: white;
+    margin-left: 80px;
+    font-family: 'cursive,Times New Roman', Times, serif;
+    font-size: 1.5em;
+    text-transform: uppercase;
+    text-shadow: #31353d -2px -2px 2px;
+}
+.white_bg > .btnPerfil{
+    font-size: 1.5em;
+    color: white;
+    height: fit-content;
+    margin-right: 10px;
+}
+.white_bg #spanMenu{
+    display: none;
+    font-size: 1.5em;
+    color: white;
+    height: fit-content;
+    margin-left: 10px;
+}
+.white_bg .logoHeader{
+    margin-left: 10px;
+}
+/*seccion del header*/
+/*seccion del nav*/
+
+.sidebar{
+    width: 100%;
+    height: 100%;
+    position: relative;
+    background-color: #31353d;
+    overflow: hidden;
+}
+.sidebar a{
+    color:rgb(184, 191, 206);
+    text-decoration: none;
+    transition: all 0.2s ease-in;
+    padding-top: 0.8em;
+}
+.sidebar a:hover{
+    color: #fffff0;
+}
+.sidebar .sidebar-content{
+    width: 100%;
+    height: 100%;
+    overflow-y: auto;
+}
+.sidebar .sidebar-content .inicio{
+    width: 100%;
+    padding-top: 0.5em;
+    padding-bottom: 0.5em; 
+    border-bottom: 1px solid#c0c0c0;
+    overflow-x: hidden;
+}
+.sidebar-content .inicio > a{
+    text-transform: uppercase;
+    font-weight: bold;
+    font-size: 1em; 
+    margin-left: 1em;
+}
+/*area info usarip*/
+.sidebar .sidebar-content .sidebar-header{
+    width: 100%;
+    padding-top: 0.8em;
+    padding-bottom: 0.8em;
+    border-bottom: 1px solid#c0c0c0;
+    overflow-x: hidden;
+}
+.sidebar .sidebar-content .sidebar-header .img-user{
+    float: left;
+    margin-left: 1em;
+    margin-right: 0.7em;
+    width: 60px;
+    height: 60px;
+    border-radius: 2px;
+}
+.sidebar .sidebar-content .sidebar-header .img-user >img{
+    object-fit: cover;
+    width: 100%;
+    height: 100%;
+}
+.sidebar .sidebar-content .sidebar-header .info-user{
+    float: left;
+}
+.sidebar .sidebar-content .sidebar-header .info-user >span{
+    color: rgb(184, 191, 206);
+    display: block;
+}
+/*area del menu*/
+.sidebar .sidebar-content .sidebar-menu{
+    width: 100%;
+    padding-top: 0.8em;
+    padding-bottom: 30px;
+    color: rgb(184, 191, 206);
+}
+.sidebar .sidebar-content .sidebar-menu .menu-header > span{
+    font-weight: bold;
+    font-size: 1em;
+    margin-left: 1em;
+}
+.sidebar .sidebar-content .sidebar-menu ul{
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+.sidebar .sidebar-content .sidebar-menu .dropdown{
+    width: 100%;
+}
+.sidebar .sidebar-content .sidebar-menu .dropdown > a{
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+}
+.sidebar .sidebar-content .sidebar-menu .dropdown > a i{
+    padding-right: 0.5em;
+    padding-left: 1em;
+}
+.sidebar .sidebar-content .sidebar-menu .dropdown .submenu{
+    background-color: #3a3f48;
+    width: 100%;
+    padding-bottom: 10px;
+    display: none;
+}
+.sidebar .sidebar-content .sidebar-menu .dropdown .submenu ul li{
+    position: relative;
+    padding: 10px 0 0px 2em;
+}
+
+
+.sidebar .sidebar-content .sidebar-menu .extras{
+    width: 100%;
+    padding-top: 0.8em;
+}
+.sidebar .sidebar-content .sidebar-menu .extras a{
+    margin-left: 1em;
+}
+/*footer del nav*/
+.sidebar .sidebar-footer{
+    width: 100%;
+    height: 30px;
+    position: absolute;
+    bottom: 0;
+    overflow-x: hidden;
+    background-color: rgba(105, 105, 105, .9);
+}
+
+/*medias querys*/
+@media screen and (max-width: 768px){
+    .grid-container{
+        width: 100%;
+        height: 100vh;
+        display: grid;
+        grid-template-columns: auto;
+        grid-template-rows: 50px auto;
+        column-gap: 0px;
+        row-gap: 0px;
+        grid-template-areas: "gridHeader"
+                            "gridContainer";
+    }
+    .gridMenu{
+        display: none;
+    }
+    .white_bg .btnPerfil{
+        display: none;
+    }
+    .white_bg #spanMenu{
+        display: block;
+    }
+}
