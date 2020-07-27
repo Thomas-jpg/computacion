@@ -15,15 +15,16 @@
 <body>
     <div class="grid-container">
         <div class="gridHeader">
-            <header>
-                <div class="blue_bg"></div>
-                <div class="white_bg">
-                    <div id="spanMenu">
-                        <i class="fas fa-bars"></i>
-                    </div>
-                    <div class="logoHeader"><img src="../../img/logo_ciencias.png" alt="Escuela de Ciencias" width="45px" height="45px"></div>
-                    <h1>Escuela de Ciencias UABJO</h1>
-                    <div class="btnPerfil"><i class="fas fa-user-circle"></i></div>
+            <header class="header">
+                <div id="spanMenu" class="spanMenu">
+                    <i class="fas fa-bars"></i>
+                </div>
+                <div class="ciencias">
+                    <img src="../../img/logo_ciencias.png" alt="Escuela de Ciencias">
+                    <h1>Escuela de Ciencias</h1>
+                </div>
+                <div class="btnPerfil">
+                    <i class="fas fa-user-circle"></i>
                 </div>
             </header>
         </div>
@@ -35,18 +36,18 @@
                     </div>
                     <div class="sidebar-header">
                         <div class="img-user">
-                            <img src="../../img/logoLogin.png" alt="">
+                            <img src="../../img/original.jpg" alt="user">
                         </div>
                         <div class="info-user">
                             <span class="userName">
-                                <strong>Tommy</strong>
+                                <strong id="nombreUsuario">Tommy</strong>
                             </span>
-                            <span class="rolUser">
+                            <span class="rolUser" id="rolUsuario">
                                 Administrador
                             </span>
                             <span class="perfilUser">
-                                <i class="fas fa-user-edit"></i>
-                                Perfil
+                                <a href=""><i class="fas fa-user-edit"></i>
+                                Perfil</a>
                             </span>
                         </div>
                     </div>
@@ -74,6 +75,12 @@
                                                 Generar Grupos
                                             </a>
                                         </li>
+                                        <li>
+                                            <a href="#" class="mostrarContenedor" data-id="3">
+                                                <i class="fas fa-user"></i>
+                                                Editar Grupos
+                                            </a>
+                                        </li>
                                     </ul>
                                 </div>
                             </li>
@@ -85,9 +92,11 @@
                                 </a>
                                 <div class="submenu">
                                     <ul>
-                                        <li><a href="#"><i class="fas fa-user"></i>Registrar</a></li>
+                                        <li><a href="#" class="mostrarContenedor">
+                                            <i class="fas fa-user"></i>Registrar</a>
+                                        </li>
                                         <li>
-                                            <a href="#">
+                                            <a href="#" class="mostrarContenedor">
                                                 <i class="fas fa-user"></i>
                                                 Consultar
                                             </a>
@@ -103,9 +112,11 @@
                                 </a>
                                 <div class="submenu">
                                     <ul>
-                                        <li><a href="#"><i class="fas fa-user"></i>Registrar</a></li>
+                                        <li><a href="#" class="mostrarContenedor">
+                                            <i class="fas fa-user"></i>Registrar</a>
+                                        </li>
                                         <li>
-                                            <a href="#">
+                                            <a href="#" class="mostrarContenedor">
                                                 <i class="fas fa-user"></i>
                                                 Consultar
                                             </a>
@@ -136,8 +147,8 @@
                 </div>
             </nav>
         </div>
-        <div class="Container">
-            <h3>contenedor</h3>
+        <div class="container">
+            <h3 class="title">contenedor</h3>
             <a href="../../controllers/usuario/controlador_cerrarSesion.php">cerrar sesion</a>
         </div>
     </div>
@@ -206,7 +217,7 @@
                 const ruta=event.target.getAttribute('data-id');
                 switch (ruta) {
                     case '1':
-                        mostrarVistas('.Container','vista_verGrupos.php');
+                        mostrarVistas('.container','vista_verGrupos.php');
                         break;
                 
                     default:
