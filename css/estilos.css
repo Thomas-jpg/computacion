@@ -20,13 +20,10 @@ body{
 }
 .gridMenu{
     grid-area: gridMenu;
-    overflow-x: hidden;
-    width: 260px;
     background: rgba(3, 71, 119,.8);
 }
-.Container{
+.container{
     grid-area: gridContainer;
-    padding-left: 1em;
 }
 .grid-container{
     width: 100%;
@@ -37,7 +34,7 @@ body{
     column-gap: 0px;
     row-gap: 0px;
     grid-template-areas: "gridMenu gridHeader"
-                        "gridMenu gridContainer" ;
+                        "gridMenu gridContainer" ;          
 }
 .show{
     display: block;
@@ -52,6 +49,7 @@ body{
     background: -moz-linear-gradient(90deg, rgba(3,4,94,.9) 0%, rgba(0,150,199,0.9) 61%, rgba(72,202,228,.9) 89%);
     background: -webkit-linear-gradient(90deg, rgba(3,4,94,.9) 0%, rgba(0,150,199,.9) 61%, rgba(72,202,228,.9) 89%);
     background: linear-gradient(90deg, rgba(3,4,94,.9) 0%, rgba(0,150,199,.9) 61%, rgba(72,202,228,.9) 89%);
+    width: 100%;
 }
 .header{
     height: 100%;
@@ -61,10 +59,46 @@ body{
     justify-content: space-between;
     align-items: center;
 }
+.spanMenu{
+    display: none;
+}
 .spanMenu,
 .btnPerfil{
     color: var(--colorIcons);
     font-size: 1.8em;
+}
+.btnPerfil{
+    position: relative;
+}
+.btnPerfil:hover .perfilBox{
+    transform: scale(1);
+}
+.perfilBox{
+    position: absolute;
+    width: 150px;
+    height: 100px;
+    padding: 1em 0;
+    background: rgb(15,14,14);
+    background: linear-gradient(90deg, rgba(15,14,14,.8) 100%, rgba(31,28,28,.8) 100%);
+    font-size: .6em;
+    text-align: center;
+    color: var(--navTextColor);
+    right: 0;
+    justify-content: center;
+    transform: scale(0);
+    transition: transform 0.4s;
+    z-index: 100;
+}
+.perfilBox p,a{
+    margin: 0;
+    text-decoration: none;
+    color: var(--navTextColor);
+}
+.perfilBox hr{
+    width: 98%;
+}
+.perfilBox a:hover{
+    color: var(--colorIcons);
 }
 /* .spanMenu{
     display: none;
@@ -86,16 +120,25 @@ body{
     text-transform: capitalize;
     color: var(--colorIcons);
 }
+.colorBlanco{
+    color: var(--colorIcons);
+}
 /*seccion del header*/
 /*seccion del nav*/
 
 .sidebar{
-    width: 100%;
+    width: 260px;
     height: 100%;
-    position: relative;
+    max-height: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
     background: rgb(15,14,14);
     background: linear-gradient(90deg, rgba(15,14,14,.9) 100%, rgba(31,28,28,.9) 100%);
-    overflow: hidden;
+    overflow-x: hidden;
+    overflow-y: auto;
+    z-index: 999;
 }
 .sidebar a{
     color:var(--navTextColor);
@@ -106,11 +149,9 @@ body{
 .sidebar a:hover{
     color: var(--colorIcons);
 }
-.sidebar .sidebar-content{
-    overflow-y: auto;
-}
 .sidebar-content .inicio{
     display: flex;
+    position: relative;
     height: 60px;
     justify-content: center;
     align-items: center;
@@ -122,6 +163,21 @@ body{
     font-weight: bold;
     padding-bottom: initial;
     font-size: 1.5em;
+}
+.sidebar-content .btnCerrar{
+    display: none;
+    position: absolute;
+    top:0.3em;
+    right: 0.3em;
+    border-radius: .1em;
+    line-height: 0;
+    font-weight: lighter;
+    font-size: 1.3em;
+    padding: 0.2em;
+    transition: background-color 0.2s;
+}
+.btnCerrar:hover{
+    background-color: rgba(211, 211, 211,.3);
 }
 /*area info usuario*/
 .sidebar-header{
@@ -157,8 +213,10 @@ body{
     padding-top: 0.8em;
     padding-left: 1em;
     padding-right: 1em;
-    padding-bottom: 30px;
+    padding-bottom: 0.8em;
+    height: 100%;
     color: var(--navTextColor);
+    overflow-y: auto;
     overflow-x: hidden;
 }
 .sidebar-menu .menu-header{
@@ -209,54 +267,204 @@ body{
     top:0.3em;
     left: 0.3em;
     z-index: 10;
+    transition: color 0.4s;
+}
+.submenu .mostrarContenedor:hover{
+    color: rgb(15,14,14);
 }
 .sidebar-menu .extras{
     padding-bottom: 0.5em;
 }
 /*footer del nav*/
 .sidebar-footer{
-    height: 30px;
-    width: 100%;
-    position: absolute;
-    bottom: 0;
     border-top: 1px solid var(--colorIcons);
     padding-left: 1em;
-    padding-top: 0.5em;
-    background-color: rgba(50, 50, 50, .9);
+    padding-top: 1em;
 }
 .sidebar-footer i{
     margin-right: 0.5em;
 }
 /* sección del container */
 .container{
-    padding-left: 1em;
+    width: 100%;
+    height: 100%;
     background-color: rgba(255, 250, 250, .95);
+}
+.contenedor{
+    padding-left: 1.5em;
+    padding-right: 1.5em;
 }
 .title{
     text-transform: capitalize;
     font-family: 'titulos','Times New Roman', Times, serif;
 }
 /* fin seccion del contenedor */
-/*medias querys*/
-@media screen and (max-width: 768px){
+/* estilos para las tablas */
+.tabla{
+    width: 100%;
+}
+.tabla.tablaPrincipal{
+    width: 100%;
+    max-width: 1017px;
+    margin-left: auto;
+    margin-right: auto;
+}
+.tabla table{
+    width: 100%;
+    border: 1px solid rgba(56,116,166,.9);
+    border-collapse: collapse;
+    table-layout: auto;
+}
+.tabla th{
+    background: rgba(56,116,166,.9);
+    font-family: 'titulos','Times New Roman', Times, serif;
+    color: var(--colorIcons);
+    transition: background-color 0.4s;
+}
+.tabla td{
+    text-align: center;
+}
+.tabla th:hover{
+    background-color: rgba(3,4,94,.9);
+}
+.tabla table tr:nth-child(even){
+    background-color: rgba(83, 122, 240, 0.5);
+}
+.tabla table tr:hover{
+    background-color: rgba(31,28,28,.5);
+}
+.dataTables_filter{
+    margin-bottom: 0.5em;
+}
+/* botones de accion */
+.botonAccion{
+    display: inline-block;
+    width: 32px;
+    height: 18px;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    margin-left: 5px;
+    margin-right: 5px;
+    position:relative;
+    background-color: rgba(3,4,94,1);
+    color: var(--colorIcons);
+    border: none;
+}
+.botonAccion::before,
+.botonAccion::after{
+    content: "";
+    position: absolute;
+    display: block;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(3,4,94,1);
+    transform: rotate(60deg);
+    transition: transform 0.5s;
+}
+.botonAccion::after{
+    transform: rotate(-60deg);
+}
+.botonAccion:hover::before{
+    transform: rotate(60deg);
+}
+.botonAccion:hover::after{
+    transform: rotate(120deg);
+}
+.botonAccion span{
+    position: relative;
+    z-index: 20;
+}
+.botonAccion.eliminar,
+.botonAccion.eliminar::before,
+.botonAccion.eliminar::after{
+    background-color: crimson;
+}
+.botonAccion.estatus,
+.botonAccion.estatus::before,
+.botonAccion.estatus::after{
+    background-color: lightseagreen;
+}
+/*medias querys*/ 
+/* @media screen and (max-width: 480px){
+    body{
+        background-color: red;
+    }
+}*/
+@media screen and (max-width: 600px){
+    .tabla table{
+        border: 0px;
+    }
+    .tabla thead{
+        display: none;
+    }
+    .tabla tr{
+        margin-bottom: 0.5em;
+        padding: 0.5em;
+        border-bottom: 2px solid black;
+        display: block;
+    }
+    .tabla td{
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+    .tablaPrincipal td::before{
+        display: block;
+        font-weight: bold;
+        align-self: flex-start;
+        margin-right: 0.5em;
+    }
+    .tablaPrincipal td:first-child::before{
+        content: "Matricula";
+        
+    }
+    .tablaPrincipal td:nth-child(2)::before{
+        content: "Nombre";
+        
+    }
+    .tablaPrincipal td:nth-child(3)::before{
+        content: "ApellidoPaterno";
+        
+    }
+    .tablaPrincipal td:nth-child(4)::before{
+        content: "Apellido Materno";
+        
+    }
+}
+/*
+@media screen and (max-width: 1070px){
+    .tablaPrincipal td:nth-child(5),th:nth-child(5){
+        display: none;
+    }
+    .tablaPrincipal td:nth-child(6),th:nth-child(6){
+        display: none;
+    }
+} */
+@media screen and (max-width: 1340px){
     .grid-container{
         width: 100%;
         height: 100vh;
         display: grid;
-        grid-template-columns: auto;
-        grid-template-rows: 50px auto;
+        grid-template-columns: 100%;
+        grid-template-rows: 60px 100%;
         column-gap: 0px;
         row-gap: 0px;
         grid-template-areas: "gridHeader"
                             "gridContainer";
     }
-    .gridMenu{
-        display: none;
-    }
-    .white_bg .btnPerfil{
-        display: none;
-    }
-    .white_bg #spanMenu{
+    .spanMenu{
         display: block;
     }
-}
+    .sidebar-content .btnCerrar{
+        display: block;
+    }
+    .tituloComputacion{
+        display: none;
+    }
+    .sidebar{
+        transform: translateX(-260px);
+        transition: transform 0.5s;
+    } 
+} 
