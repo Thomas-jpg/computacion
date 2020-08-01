@@ -70,7 +70,7 @@
                             </li>
                             <li class="dropdown">
                                 <a href="#">
-                                <span><i class="fas fa-user-alt"></i>
+                                <span><i class="fas fa-users"></i>
                                     Grupos</span>
                                     <i class="fas fa-chevron-down"></i>
                                 </a>
@@ -78,19 +78,13 @@
                                     <ul>
                                         <li>
                                             <a href="#" class="mostrarContenedor" data-id="1">
-                                                <i class="fas fa-user"></i> Ver Grupos
+                                                <i class="fas fa-person-booth"></i> Ver Grupos
                                             </a>
                                         </li>
                                         <li>
                                             <a href="#" class="mostrarContenedor" data-id="2">
-                                                <i class="fas fa-user"></i>
+                                                <i class="fas fa-user-plus"></i>
                                                 Generar Grupos
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="#" class="mostrarContenedor" data-id="3">
-                                                <i class="fas fa-user"></i>
-                                                Editar Grupos
                                             </a>
                                         </li>
                                     </ul>
@@ -98,18 +92,18 @@
                             </li>
                             <li class="dropdown">
                                 <a href="#">
-                                <span><i class="fas fa-user-alt"></i>
+                                <span><i class="fas fa-user-graduate"></i>
                                     Alumnos</span>
                                     <i class="fas fa-chevron-down"></i>
                                 </a>
                                 <div class="submenu">
                                     <ul>
                                         <li><a href="#" class="mostrarContenedor">
-                                            <i class="fas fa-user"></i>Registrar</a>
+                                            <i class="fas fa-address-card"></i>Registrar</a>
                                         </li>
                                         <li>
                                             <a href="#" class="mostrarContenedor">
-                                                <i class="fas fa-user"></i>
+                                                <i class="fas fa-align-left"></i>
                                                 Consultar
                                             </a>
                                         </li>
@@ -118,18 +112,18 @@
                             </li>
                             <li class="dropdown">
                                 <a href="#">
-                                <span><i class="fas fa-user-alt"></i>
+                                <span><i class="fas fa-user-tie"></i>
                                     Docentes</span>
                                     <i class="fas fa-chevron-down"></i>
                                 </a>
                                 <div class="submenu">
                                     <ul>
                                         <li><a href="#" class="mostrarContenedor">
-                                            <i class="fas fa-user"></i>Registrar</a>
+                                            <i class="fas fa-address-card"></i>Registrar</a>
                                         </li>
                                         <li>
                                             <a href="#" class="mostrarContenedor">
-                                                <i class="fas fa-user"></i>
+                                                <i class="fas fa-align-left"></i>
                                                 Consultar
                                             </a>
                                         </li>
@@ -180,81 +174,19 @@
                         </tbody>
                     </table>
                 </div>
+               
             </div>    
         </div>
     </div>
+    <!-- seccion modales -->
+        <div id="modalEditar" class="modal"></div>
+        <div id="modalEliminar" class="modal"></div>
+        <div id="modalRespuesta" class="modal"></div>
+    <!-- seccion modales -->
     <script src="../../js/nav.js"></script>
     <script src="../../js/librerias/jquery-3.5.1.js"></script>
     <script src="../../js/librerias/DataTables/datatables.min.js"></script>
-    <script>
-        $(document).ready(function(){
-            listarAlumnos();
-        });
-            const idioma={
-                        "sProcessing": "Procesando...",
-                    "sLengthMenu": "Mostrar _MENU_  registros",
-                    "sZeroRecords": "No se encontraron resultados",
-                    "sEmptyTable": "Ningún dato disponible en esta tabla",
-                    "sInfo": "Mostrando registros del _START_ al _END_ de un total de _TOTAL_ registros",
-                    "sInfoEmpty": "Mostrando registro del 0 al 0 de un total de 0 registros",
-                    "sInfoFIltered": "(filtrado de un total de _MAX_ registros)",
-                    "sInfoPostFix": "",
-                    "sSearch": "Buscar:",
-                    "sUrl": "",
-                    "sInfoThousands": ",",
-                    "sLoadingRecords": "Cargando...",
-                    "oPaginate": {
-                        "sFirst": "Primero",
-                        "sLast": "Ultimo",
-                        "sNext": "Siguiente",
-                        "sPrevious": "Anterior"
-                    },
-                "oAria":{
-                    "sSortAscending": ": Activar para ordenar la columna de manera ascendente",
-                    "sSortDescending": ": Activar para ordenar la columna de manera descendente"
-                }
-            };
-            
-            function listarAlumnos(){
-                const tablaPrincipal=$('#tablaPrincipal').DataTable({
-                    "destroy":true,
-                    "ajax":{
-                        "method":"POST",
-                        "url":"../../controllers/alumnos/controlador_infoAlumnos.php"
-                    },
-                    "columns":[
-                        {"data":"Matricula_Alumno"},
-                        {"data":"Nombre"},
-                        {"data":"Apellido_P"},
-                        {"data":"Apellido_M"},
-                        {"data":"Anio_Ingreso"},
-                        {"data":"Semestre_Actual"},
-                        {"defaultContent":"<button class='botonAccion' id='alumno_btnEditar' title='Editar'><span><i class='fas fa-edit'></i></span></button><button class='botonAccion eliminar' id='alumno_btnEliminar' title='Eliminar'><span><i class='fas fa-trash'></i></span></button><button class='botonAccion kardex' id='alumno_btnKardex' title='Ver Kardex'><span><i class='fas fa-list'></i></span></button><button class='botonAccion estatus' id='alumno_btnEstatus' title='Estatus General'><span><i class='fas fa-folder-open'></i></span></button>"}
-                    ],
-                    "order":[[2,"asc"]],
-                    "language":idioma
-                });
-                tablaPrincipal
-                btn_EditarAlumno("#tablaPrincipal tbody",tablaPrincipal);
-                btn_EliminarAlumno("#tablaPrincipal tbody",tablaPrincipal);
-                btn_KardexAlumno("#tablaPrincipal tbody",tablaPrincipal);
-                btn_EstatusAlumno("#tablaPrincipal tbody",tablaPrincipal);
-            }
-
-            // accion para botones
-            function btn_EditarAlumno(tbody,table){
-
-            }
-            function btn_EliminarAlumno(tbody,table){
-                
-            }
-            function btn_KardexAlumno(tbody,table){
-                
-            }
-            function btn_EstatusAlumno(tbody,table){
-                
-            }
-    </script>
+    <script src="../../js/principalAd.js"></script>
 </body>
 
 </html>

@@ -83,7 +83,7 @@ function crearSesion(userData){
     .catch(error => console.log(error));
 }
 function mostrarModal(titulo,mensaje){
-    let html=`<div class="modal-content">
+    let html=`<div class="modal-content w-25">
                 <div class="modal-header">
                     <span class="close" id="close">&times;</span>
                     <h2>${titulo}</h2>
