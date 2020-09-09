@@ -9,6 +9,12 @@ body{
     --colorIcons: #ffffff;
     --navTextColor:rgb(184, 191, 206);
 }
+.text-center{
+    text-align: center;
+}
+.capitalize{
+    text-transform: capitalize;
+}
 /* fuente para titulos */
 @font-face{
     src: url(../fonts/romance_fatal_serif/romance_fatal_serif_JC_Fonts.ttf);
@@ -49,7 +55,6 @@ body{
     background: -moz-linear-gradient(90deg, rgba(3,4,94,.9) 0%, rgba(0,150,199,0.9) 61%, rgba(72,202,228,.9) 89%);
     background: -webkit-linear-gradient(90deg, rgba(3,4,94,.9) 0%, rgba(0,150,199,.9) 61%, rgba(72,202,228,.9) 89%);
     background: linear-gradient(90deg, rgba(3,4,94,.9) 0%, rgba(0,150,199,.9) 61%, rgba(72,202,228,.9) 89%);
-    width: 100%;
 }
 .header{
     height: 100%;
@@ -286,7 +291,6 @@ body{
 }
 /* sección del container */
 .container{
-    width: 100%;
     height: 100%;
     background-color: rgba(255, 250, 250, .95);
 }
@@ -301,16 +305,11 @@ body{
 /* fin seccion del contenedor */
 /* estilos para las tablas */
 .tabla{
-    width: 100%;
-}
-.tabla.tablaPrincipal{
-    width: 100%;
-    max-width: 1017px;
-    margin-left: auto;
-    margin-right: auto;
+   display: flex;
+   justify-content: center;
+   max-width: 100%;
 }
 .tabla table{
-    width: 100%;
     border: 1px solid rgba(56,116,166,.9);
     border-collapse: collapse;
     table-layout: auto;
@@ -339,6 +338,7 @@ body{
 .dataTables_filter{
     margin-bottom: 0.5em;
 }
+
 /* botones de accion */
 .botonAccion{
     display: inline-block;
@@ -389,12 +389,75 @@ body{
 .botonAccion.estatus::after{
     background-color: lightseagreen;
 }
-.botonAccion.kardex,
-.botonAccion.kardex::before,
-.botonAccion.kardex::after{
-    background-color: #3a6d;
+.botonAccion.Kardex,
+.botonAccion.Kardex::before,
+.botonAccion.Kardex::after{
+    background-color: rgba(41, 179, 101, 1);
 }
 
+/* estilos para la tabla contenedora del kardex */
+.kardex{
+    padding-top: 1em;
+    overflow: auto;
+}
+.kardex table{
+    width: 1050px;
+    min-width: 1050px;
+    margin-left: auto;
+    margin-right: auto;
+    border-collapse: collapse;
+}
+.kardex table tr{
+    border: 1px solid black;
+}
+.kardex table td{
+    text-align: center;
+    border-left: 1px solid black;
+    border-right: 1px solid black;
+}
+.kardex img{
+    width: 150px;
+    height: 150px;
+    object-fit: contain;
+    object-position: center;
+}
+.kardex .seccion{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: rgba(0,150,199,0.9) 1px solid;
+    margin-bottom: 0.5em;
+}
+.group_btn{
+    background-color: rgba(0,150,199,0.9);
+    border-radius: 0.5em;
+}
+.group_btn button{
+    background-color: rgba(0,150,199,0.9);
+    border-radius: 0.5em;
+    border: none;
+    color: var(--colorIcons);
+    transition: background-color 0.4s;
+}
+.group_btn button:hover{
+    background-color: rgba(3,4,94,1);
+}
+.buttonGeneral{
+    display: flex;
+    justify-content: right;
+}
+.buttonGeneral button{
+    color: var(--colorIcons);
+    font-weight: bold;
+    background-color: rgb(3,4,94);
+    background-color: -moz-linear-gradient(90deg, rgba(3,4,94,.9) 0%, rgba(0,150,199,0.9) 61%, rgba(72,202,228,.9) 89%);
+    background-color: -webkit-linear-gradient(90deg, rgba(3,4,94,.9) 0%, rgba(0,150,199,.9) 61%, rgba(72,202,228,.9) 89%);
+    background-color: linear-gradient(90deg, rgba(3,4,94,.9) 0%, rgba(0,150,199,.9) 61%, rgba(72,202,228,.9) 89%);
+    transition: background-color 0.4s;
+}
+.buttonGeneral button:hover{
+    background-color: rgb(3,4,94);
+}
 /*medias querys*/ 
 /* @media screen and (max-width: 480px){
     body{
@@ -412,9 +475,11 @@ body{
         margin-bottom: 0.5em;
         padding: 0.5em;
         border: 1px solid rgba(56,116,166,.9);
-        border-radius: 1em;
+        border-radius: .5em;
         box-shadow: 2px 5px 5px lightgray, -2px 5px 5px lightgray;
         display: block;
+        min-width: 320px;
+        max-width: 560px;
     }
     .tabla table tr:hover{
         background-color: initial;

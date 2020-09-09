@@ -1,3 +1,5 @@
+//import {Grupos} from "./grupos.js";
+//importando los archivos de vistas
 //  seccion de variables
  //seleccionamos todos los elementos dropdown que tengan como primer hijo un a
  const dropdown= document.querySelectorAll('.dropdown > a');
@@ -61,7 +63,9 @@ spanMenu.addEventListener('click',function(){
          const ruta=event.target.getAttribute('data-id');
          switch (ruta) {
              case '1':
-                 mostrarVistas('.container','vista_verGrupos.php');
+                //  let grup= new Grupos();
+                //  console.log(grup.Cargar_Grupos());
+                mostrarVistas('container','vista_verGrupos.php');
                  break;
          
              default:
@@ -70,15 +74,5 @@ spanMenu.addEventListener('click',function(){
      });
  }
  function mostrarVistas(contenedor,contenido){
-     console.log(contenido);
-     fetch(`${contenido}`)
-     .then(res => res.text())
-     .then(data =>{
-         if(data === ''){
-             document.querySelector(`${contenedor}`).innerHTML='No se pudo obtener la informacion';
-         }else{
-             document.querySelector(`${contenedor}`).innerHTML=data;
-         }
-     })
-     .catch(error => console.log('el error es'+error));
- }
+     $('#'+contenedor).load(contenido);
+}

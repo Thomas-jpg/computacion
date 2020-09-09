@@ -1,3 +1,11 @@
+<?php
+    session_start();
+    if(!isset($_SESSION['S_IDUSUARIO_C'])){
+        header('Location: ../../login/index.php');
+    }else{
+        header('Location ../index.php');
+    }
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -153,7 +161,7 @@
                 </div>
             </nav>
         </div>
-        <div class="container">
+        <div class="container" id="container">
             <div class="contenedor">
                 <h1 class="title">Consulta general de alumnos</h1>
                 <div class="tabla tablaPrincipal">
@@ -174,10 +182,10 @@
                         </tbody>
                     </table>
                 </div>
-               
             </div>    
         </div>
     </div>
+    
     <!-- seccion modales -->
         <div id="modalEditar" class="modal"></div>
         <div id="modalEliminar" class="modal"></div>
@@ -186,7 +194,11 @@
     <script src="../../js/nav.js"></script>
     <script src="../../js/librerias/jquery-3.5.1.js"></script>
     <script src="../../js/librerias/DataTables/datatables.min.js"></script>
+    <script src="../../js/modal.js"></script>
     <script src="../../js/principalAd.js"></script>
+    <script>
+        
+    </script>
 </body>
 
 </html>

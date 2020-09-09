@@ -1,5 +1,26 @@
-<div>
-    <h1 class="title">GRUPOS</h1>
-    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Repellat accusantium qui, voluptatem assumenda eum facere? Odio consequuntur voluptates illo ab ea atque quisquam ipsa rem cupiditate, eveniet magnam. Voluptatem, commodi.</p>
-    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Nostrum dolorum fugit vero labore obcaecati incidunt animi fuga excepturi eum? Dolorum voluptate, totam fugiat nam veniam tempore rerum esse repellendus molestiae?</p> 
+<script type="text/javascript" src="../../js/grupos.js"></script> 
+<div class="contenedor">
+    <h1 class="title">Grupos Disponibles</h1>
+    <div class="buttonGeneral">
+        <button><span><i class="fas fa-plus"></i></span>
+            &nbsp;&nbsp;&nbsp;Agregar Grupos
+        </button>
+    </div>
+    <div class="tabla">
+        <table id="tablaGrupos">
+            <thead>
+                <tr>
+                    <th>Clave</th>
+                    <th>Materia</th>
+                    <th>Docente</th>
+                    <th>Aula</th>
+                    <th>Capacidad</th>
+                    <th>Acciones</th>
+                </tr>
+            </thead>
+            <tbody>
+
+            </tbody>
+        </table>
+    </div>
 </div>

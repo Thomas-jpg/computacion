@@ -21,5 +21,18 @@
         }
         return $arreglo;
     }
+    function InfoUsuarios(){
+        $dataUsuarios=array();
+        //obtenemos la informacion de los usuarios
+        $sql="SELECT Id_usuario,Usuario,Foto";
+        $consulta=$this->conexion->conexion->query($sql);
+        if($consulta){
+            while($data = mysqli_fetch_assoc($consulta)){
+                $dataUsuarios["data"][]=$data;
+            }
+            $this->conexion->cerrar();
+        }
+        return $dataUsuarios;
+    }
 }
 ?>

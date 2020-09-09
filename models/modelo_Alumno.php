@@ -42,6 +42,19 @@
             }
             return $dataActualizado;
         }
+        function KardexAlumno($matricula,$semestre){
+            $dataKardex=array();
+            // solicitamos las datos necesarios para rellenar el kardex
+            $sql="SELECT k.Matricula_Materia, k.Fecha_Examen, k.Tipo_Examen, k.Calificacion,k.Periodo_Lectivo,k.Ciclo_Escolar,k.Semestre, m.Nombre, m.Creditos, m.Matricula_Materia FROM kardex_alumno k, materias m WHERE k.Matricula_Materia=m.Matricula_Materia AND k.Matricula_Alumno='$matricula' AND k.Semestre='$semestre'";
+            $consulta=$this->conexion->conexion->query($sql);
+            if($consulta){
+                while($data = mysqli_fetch_assoc($consulta)){
+                    $dataKardex['data'][]=$data;
+                }
+                $this->conexion->cerrar();
+            }
+            return $dataKardex;
+        }
     }
 
 

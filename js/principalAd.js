@@ -1,6 +1,8 @@
+
 $(document).ready(function(){
     listarAlumnos();
-});
+}); 
+    const Modales= new Modal();
     const modalRespuesta=document.querySelector('#modalRespuesta');
     const idioma={
         "sProcessing": "Procesando...",
@@ -41,7 +43,7 @@ $(document).ready(function(){
                 {"data":"Apellido_M"},
                 {"data":"Anio_Ingreso"},
                 {"data":"Semestre_Actual"},
-                {"defaultContent":"<button class='botonAccion' id='alumno_btnEditar' title='Editar'><span><i class='fas fa-edit'></i></span></button><button class='botonAccion eliminar' id='alumno_btnEliminar' title='Eliminar'><span><i class='fas fa-trash'></i></span></button><button class='botonAccion kardex' id='alumno_btnKardex' title='Ver Kardex'><span><i class='fas fa-list'></i></span></button><button class='botonAccion estatus' id='alumno_btnEstatus' title='Estatus General'><span><i class='fas fa-folder-open'></i></span></button>"}
+                {"defaultContent":"<button class='botonAccion' id='alumno_btnEditar' title='Editar'><span><i class='fas fa-edit'></i></span></button><button class='botonAccion eliminar' id='alumno_btnEliminar' title='Eliminar'><span><i class='fas fa-trash'></i></span></button><button class='botonAccion Kardex' id='alumno_btnKardex' title='Ver Kardex'><span><i class='fas fa-list'></i></span></button><button class='botonAccion estatus' id='alumno_btnEstatus' title='Estatus General'><span><i class='fas fa-folder-open'></i></span></button>"}
             ],
             "order":[[2,"asc"]],
             "language":idioma
@@ -116,7 +118,7 @@ $(document).ready(function(){
                         </div>
                     </div>
                     `;
-            mostrarModal('Editar Alumno',html,'50','info','#modalEditar'); 
+            Modales.mostrarModal('Editar Alumno',html,'50','info','#modalEditar'); 
             Actualizar_Alumno('#modalEditar');       
         });
     }
@@ -124,15 +126,31 @@ $(document).ready(function(){
         $(tbody).on("click","button#alumno_btnEliminar",function(){
             let data=table.row($(this).parents("tr")).data();
             
-            mostrarModal("eliminar",`¿Estas seguro(a) de eliminar al alumno ${data.Nombre} ?`,"25","info","#modalEliminar");
+            Modales.mostrarModal("eliminar",`¿Estas seguro(a) de eliminar al alumno ${data.Nombre} ?`,"25","info","#modalEliminar");
             Eliminar_Alumno(data.Matricula_Alumno,"#modalEliminar");
         });
     }
     function btn_KardexAlumno(tbody,table){
-        
+        $(tbody).on("click","button#alumno_btnKardex",function(){
+            let data=table.row($(this).parents("tr")).data();
+            fetch(`../../controllers/alumnos/controlador_kardexAlumno.php?matricula=${data.Matricula_Alumno}&semestre=1`)
+                .then(res => res.json())
+                .then(info =>{
+                    if(info === '' || info.length === 0){
+                        Modales.mostrarModal('error',`El alumno ${data.Nombre} no cuenta con la carga de materias para generar su kardex., intentalo más tarde.`,'25','respuesta','#modalRespuesta');
+                    }else{
+                        Cargar_Kardex(data,info);
+                    }
+                })
+                .catch(error => console.log(error));
+            
+        });
     }
     function btn_EstatusAlumno(tbody,table){
-        
+        $(tbody).on("click","button#alumno_btnEstatus",function(){
+            let data=table.row($(this).parents("tr")).data();
+            
+        });
     }
     
     function Eliminar_Alumno(matricula,objetivo){
@@ -143,8 +161,8 @@ $(document).ready(function(){
                 fetch(`../../controllers/alumnos/controlador_eliminarAlumno.php?matricula=${matricula}`)
                 .then(res => res.json())
                     .then(data =>{
-                        ocultarModal(objetivo);
-                        mostrarModal('Información',`${data.mensaje}`,'25','respuesta','#modalRespuesta');
+                        Modales.ocultarModal(objetivo);
+                        Modales.mostrarModal('Información',`${data.mensaje}`,'25','respuesta','#modalRespuesta');
                         //recargamos solo la tabla para visualizar los cambios
                         if(data.tipo === "correcto"){
                          $('#tablaPrincipal').DataTable().ajax.reload();   
@@ -152,7 +170,7 @@ $(document).ready(function(){
                     })
                     .catch(error => console.log(error)); 
                 }else if(e.target.classList.contains('close')){
-                    ocultarModal(objetivo);
+                    Modales.ocultarModal(objetivo);
                 }
         });
     }
@@ -185,8 +203,8 @@ $(document).ready(function(){
                 })
                 .then(res => res.json())
                 .then(data =>{
-                    ocultarModal(objetivo);
-                    mostrarModal('Información',`${data.mensaje}`,'25','respuesta','#modalRespuesta');
+                    Modales.ocultarModal(objetivo);
+                    Modales.mostrarModal('Información',`${data.mensaje}`,'25','respuesta','#modalRespuesta');
                     //recargamos solo la tabla para visualizar los cambios
                     if(data.tipo === "correcto"){
                         $('#tablaPrincipal').DataTable().ajax.reload();   
@@ -194,51 +212,120 @@ $(document).ready(function(){
                 })
                 .catch(error => console.log(error));    
             }else if(event.target.classList.contains('close')){
-                ocultarModal(objetivo);
+                Modales.ocultarModal(objetivo);
             }
+        });
+    }
+    function Cargar_Kardex(data,info){
+        const cantidadMaterias= info.data.length;
+    
+        let html;
+                html=`
+                <div class="contenedor">
+                    <div class="kardex">
+                        <div class="seccion">
+                            <div>
+                                <label>Semestre</label>
+                                <select name="" id="selectKardex" class="input">`
+                                for (let i = 1; i < 11; i++) {
+                                    html+=`<option value="${i}">${i}</option>`;
+                                }
+                            html+=`</select>
+                            </div>
+                            <div class="group_btn">
+                                <button><span><i class="fas fa-print" title="Imprimir Kardex"></i></span></button>
+                                <button title="Kardex por Semestre"><span>KS</span></button>
+                                <button title="Kardex Modificado"><span>KM</span></button>
+                                <button title="Agregar Kardex">K<span><i class="fas fa-plus"></i></span></button>
+                            </div>
+                        </div>
+                        <table>
+                            <tr>
+                                <td rowspan="4"><img src="../../img/sleepy.png" alt="alumno"></td>
+                                <td>NOMBRE</td>
+                                <td colspan="5">${data.Nombre}</td>
+                                <td colspan="3">PERIODO LECTIVO</td>
+                                <td>${info.data[0].Periodo_Lectivo}</td>
+                            </tr>
+                            <tr>
+                                <td rowspan="2">MATRICULA</td>
+                                <td rowspan="2">${data.Matricula_Alumno}</td>
+                                <td colspan="2" rowspan="2">CURP</td>
+                                <td colspan="4" rowspan="2">${data.Curp}</td>
+                                <td>CICLO ESCOLAR</td>
+                                <td>${info.data[0].Ciclo_Escolar}</td>
+                                <tr>
+                                    <td>GRADO</td>
+                                    <td>${info.data[0].Semestre}</td>
+                                </tr>
+                            </tr>
+                            <tr>
+                                <td>CARRERA</td>
+                                <td>Computación</td>
+                                <td colspan="4">EVALUACIONES</td>
+                                <td colspan="3">TOTAL DE MATERIAS</td>
+                                <td>${cantidadMaterias}</td>
+                            </tr>
+                            <tr>
+                                <td>CREDITOS</td>
+                                <td>CLAV.MAT</td>
+                                <td>NOMBRE DE LA MATERIA</td>
+                                <td>1°</td>
+                                <td>2°</td>
+                                <td>3°</td>
+                                <td>4°</td>
+                                <td>CALIF.</td>
+                                <td>FECHA EXAM.</td>
+                                <td colspan="2">TIPO EXAM.</td> 
+                            </tr>`
+            info.data.forEach(element => {
+                console.log(element.Matricula_Materia);
+                html+=`
+                        <tr>
+                            <td>${element.Creditos}</td>
+                            <td>${element.Matricula_Materia}</td>
+                            <td>${element.Nombre}</td>
+                            <td>-</td>
+                            <td>-</td>
+                            <td>-</td>
+                            <td>-</td>
+                            <td class="text-center">${element.Calificacion}</td>
+                            <td>${element.Fecha_Examen}</td>
+                            <td colspan="2">${element.Tipo_Examen}</td>
+                        `;
+                });  
+                    html+=`
+                                </table>
+                            </div>
+                        </div>            
+                        `;
+        // cargamos el resultado al contenedor principal                           
+        document.querySelector('.container').innerHTML=html;
+        obtener_DatosKardex(data);
+    }
+    // funcion para obtener los cambios del kardex
+    function obtener_DatosKardex(data){
+        const select= document.querySelector('#selectKardex');
+        select.addEventListener('change',()=>{
+            const semestre=select.options[select.selectedIndex].value;
+            // realizamos la peticion para obtener la informacion
+            fetch(`../../controllers/alumnos/controlador_kardexAlumno.php?matricula=${data.Matricula_Alumno}&semestre=${semestre}`)
+                .then(res => res.json())
+                .then(info =>{
+                    if(info === '' || info.length === 0){
+                        Modales.mostrarModal('error',`El alumno ${data.Nombre} no cuenta con la carga de materias para generar su kardex., intentalo más tarde.`,'25','respuesta','#modalRespuesta');
+                    }else{
+                        Cargar_Kardex(data,info);
+                    }
+                })
+                .catch(error => console.log(error));
         });
     }
     // eventos y funciones para los modales
     modalRespuesta.addEventListener('click',(event)=>{
         if(event.target.classList.contains('close')){
-            ocultarModal('#modalRespuesta');
+            Modales.ocultarModal('#modalRespuesta');
         }
     });
     
-    function mostrarModal(titulo,mensaje,tamanio,tipo,modal){
-        let html;
-        if(tipo === "info"){
-            html=`<div class="modal-content w-${tamanio}">
-                    <div class="modal-header">
-                        <span class="close" id="close">&times;</span>
-                        <h4>${titulo}</h4>
-                        </div>
-                    <div class="modal-body">
-                        ${mensaje}
-                    </div>
-                    <div class="modal-footer">
-                        <button class="close cancel">Cancelar</button>
-                        <button class="aceptar">Aceptar</button>
-                    </div>
-                </div>`;
-        }else{
-            html=`<div class="modal-content w-${tamanio}">
-                    <div class="modal-header">
-                        <span class="close" id="close">&times;</span>
-                        <h3>${titulo}</h3>
-                    </div>
-                    <div class="modal-body">
-                        <p>${mensaje}</p>
-                    </div>
-                </div>`;
-        }
-        ShowModal=document.querySelector(`${modal}`);
-        ShowModal.innerHTML=html;
-        ShowModal.style.display='block';
-    }
-
-    function ocultarModal(modal){
-          let ocultar=document.querySelector(`${modal}`);
-          
-          ocultar.style.display='none';
-    }
+    
