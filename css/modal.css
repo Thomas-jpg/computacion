@@ -104,7 +104,7 @@
     background-color: rgb(28, 103, 165);
 }
 /* modales de accion */
-.modal .form_editarAlumno{
+.modal .form_editar{
     display: grid;
     width: 100%;
     max-width: 100%;

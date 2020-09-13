@@ -61,6 +61,7 @@ spanMenu.addEventListener('click',function(){
  for(let i = 0; i < selectores.length; i++){
      selectores[i].addEventListener('click',function(event){
          const ruta=event.target.getAttribute('data-id');
+         console.log(ruta);
          switch (ruta) {
              case '1':
                 //  let grup= new Grupos();

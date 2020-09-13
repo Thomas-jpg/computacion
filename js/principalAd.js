@@ -61,7 +61,7 @@ $(document).ready(function(){
             let data=table.row($(this).parents("tr")).data();
             console.log(data);
             let html=`
-                    <div class="form_editarAlumno">
+                    <div class="form_editar">
                         <div>
                             <label class="form_Label">Matricula</label>
                             <div class="input">
@@ -223,6 +223,7 @@ $(document).ready(function(){
                 html=`
                 <div class="contenedor">
                     <div class="kardex">
+                    <h1 class="title">Kardex Curricular</h1>
                         <div class="seccion">
                             <div>
                                 <label>Semestre</label>
