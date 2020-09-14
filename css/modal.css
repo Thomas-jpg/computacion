@@ -104,7 +104,7 @@
     background-color: rgb(28, 103, 165);
 }
 /* modales de accion */
-.modal .form_editar{
+.form_editar{
     display: grid;
     width: 100%;
     max-width: 100%;
@@ -156,6 +156,23 @@
     left: 0.7em;
     bottom: 2px;
     box-shadow: 2px 2px 5px rgba(56,116,166,.5);
+}
+.form_submit{
+    align-self: center;
+}
+.form_submit > button{
+    background-color: rgba(56,116,166,.9);
+    color: white;
+    border-radius: 0.5em;
+    border: none;
+    font-weight: bold;
+    text-align: center;
+    padding: 0.5em;
+    transition: transform 0.1s, background-color 0.3s;
+}
+.form_submit > button:hover{
+    transform: scale(1.2);
+    background-color: rgba(56,116,166,.5);
 }
 .grid-item_span{
     grid-column: 1 / span -1;

@@ -89,12 +89,6 @@
                                                 <i class="fas fa-person-booth"></i> Ver Grupos
                                             </a>
                                         </li>
-                                        <li>
-                                            <a href="#" class="mostrarContenedor" data-id="2">
-                                                <i class="fas fa-user-plus"></i>
-                                                Generar Grupos
-                                            </a>
-                                        </li>
                                     </ul>
                                 </div>
                             </li>
@@ -106,14 +100,8 @@
                                 </a>
                                 <div class="submenu">
                                     <ul>
-                                        <li><a href="#" class="mostrarContenedor">
+                                        <li><a href="#" class="mostrarContenedor" data-id="2">
                                             <i class="fas fa-address-card"></i>Registrar</a>
-                                        </li>
-                                        <li>
-                                            <a href="#" class="mostrarContenedor">
-                                                <i class="fas fa-align-left"></i>
-                                                Consultar
-                                            </a>
                                         </li>
                                     </ul>
                                 </div>
@@ -126,14 +114,22 @@
                                 </a>
                                 <div class="submenu">
                                     <ul>
-                                        <li><a href="#" class="mostrarContenedor">
-                                            <i class="fas fa-address-card"></i>Registrar</a>
+                                        <li><a href="#" class="mostrarContenedor" data-id="3">
+                                            <i class="fas fa-address-card"></i>Ver Docentes</a>
                                         </li>
-                                        <li>
-                                            <a href="#" class="mostrarContenedor">
-                                                <i class="fas fa-align-left"></i>
-                                                Consultar
-                                            </a>
+                                    </ul>
+                                </div>
+                            </li>
+                            <li class="dropdown">
+                                <a href="#">
+                                <span><i class="fas fa-user-tie"></i>
+                                    Usuarios</span>
+                                    <i class="fas fa-chevron-down"></i>
+                                </a>
+                                <div class="submenu">
+                                    <ul>
+                                        <li><a href="#" class="mostrarContenedor" data-id="4">
+                                            <i class="fas fa-address-card"></i>Ver Usuarios</a>
                                         </li>
                                     </ul>
                                 </div>
@@ -141,6 +137,9 @@
                             <br>
                             <li class="menu-header">
                                 <span>Extras</span>
+                            </li>
+                            <li class="extras">
+                                <a href="#">Aulas</a>
                             </li>
                             <li class="extras">
                                 <a href="#">Calendario</a>

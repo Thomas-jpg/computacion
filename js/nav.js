@@ -57,7 +57,7 @@ spanMenu.addEventListener('click',function(){
  btnCerrar.addEventListener('click',()=>{
      sidebar.style.transform="translateX(-260px)";
  });
-//eventos para mostras los contenedores  
+//eventos para mostrar los contenedores  
  for(let i = 0; i < selectores.length; i++){
      selectores[i].addEventListener('click',function(event){
          const ruta=event.target.getAttribute('data-id');
@@ -68,7 +68,11 @@ spanMenu.addEventListener('click',function(){
                 //  console.log(grup.Cargar_Grupos());
                 mostrarVistas('container','vista_verGrupos.php');
                  break;
-         
+            case '2':
+                mostrarVistas('container','vista_registroAlumno.php');
+                break;
+            case '3':
+                mostrarVistas('container','vista_verDocentes.php');    
              default:
                  break;
          }

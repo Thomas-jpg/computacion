@@ -55,6 +55,21 @@
             }
             return $dataKardex;
         }
+
+        function RegistrarAlumno($matricula,$nombre,$apellidoP,$apellidoM,$curp,$anio_ingreso,$semestreR,$semestreA,$ciclo_escolar){
+            $dataAlumno=array();
+            $sql="INSERT INTO alumno(Matricula_Alumno,Nombre,Apellido_P, Apellido_M, Curp, Licenciatura,Anio_Ingreso,Semestre_Real,Semestre_Actual,Ciclo_Escolar,Estatus_Carga) VALUES($matricula,'$nombre','$apellidoP','$apellidoM','$curp','COMPUTACIÓN',$anio_ingreso,$semestreR,$semestreA,'$ciclo_escolar',0)";
+            $consulta=$this->conexion->conexion->query($sql);
+            if ($consulta) {
+                $mensaje='Alumno '.$nombre.' agregado correctamente.';
+                $dataAlumno=array('tipo'=>'correcto','mensaje'=>$mensaje);
+            }else{
+                $dataAlumno=array('tipo'=>'error', 'mensaje'=> 'Ocurrió un error, intenlo de nuevo más tarde.');
+            }
+            $this->conexion->cerrar();
+
+            return $dataAlumno;
+        }
     }
 
 

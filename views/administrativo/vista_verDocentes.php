@@ -1,8 +1,8 @@
 <script src="../../js/docentes.js"></script>
 <div class="contenedor">
     <h1 class="title">Docentes</h1>
-    <div class="buttonGeneral">
-        <button>
+    <div class="addbtn">
+        <button title="Agregar Docente">
             <span><i class="fas fa-plus"></i></span>
             &nbsp;&nbsp;&nbsp;Agregar Docente
         </button>

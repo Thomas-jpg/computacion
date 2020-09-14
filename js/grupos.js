@@ -1,7 +1,7 @@
 $(document).ready(function(){
     listarGrupos();
 });
-let variable1;
+
 //eventos  
 document.querySelector('#cerrarAlumno').addEventListener('click',ocultarSeccionAlumno);
 document.querySelector('#addGrupo').addEventListener('click',obtenerMaterias);
@@ -86,9 +86,9 @@ document.querySelector('#addGrupo').addEventListener('click',obtenerMaterias);
     function btn_AgregarAlumnoGrupo(id){
         document.querySelector('#addAlumno').addEventListener('click',()=>{
             let html=`
-            <div class="form-editar">
+            <div class="form_editar">
                 <div>
-                    <label class="form-Label">Alumno</label>
+                    <label class="form_Label">Alumno</label>
                     <div class="input">
                         <span class="form_icon"><i class="fas fa-user"></i></span>
                         <input type="text" name="alumno" id="alumnoGrupo" value="" placeholder="Matricula del Alumno">
@@ -170,7 +170,7 @@ document.querySelector('#addGrupo').addEventListener('click',obtenerMaterias);
         let html=`
             <div class="form_editar">
                 <div>
-                    <label class="form-Label">Materia</label>
+                    <label class="form_Label">Materia</label>
                     <div class="input">
                         <span class="form_icon"><i class="fas fa-file-signature"></i></span>
                         <select name="materia" id="materiaGrupo">`;
@@ -182,7 +182,7 @@ document.querySelector('#addGrupo').addEventListener('click',obtenerMaterias);
                     </div>
                 </div>
                 <div>
-                    <label class="form-Label">Docente</label>
+                    <label class="form_Label">Docente</label>
                     <div class="input">
                         <span class="form_icon"><i class="fas fa-chalkboard-teacher"></i></span>
                         <select name="docente" id="docenteGrupo">`;
@@ -194,7 +194,7 @@ document.querySelector('#addGrupo').addEventListener('click',obtenerMaterias);
                     </div>
                 </div>
                 <div>
-                    <label class="form-Label">Aula</label>
+                    <label class="form_Label">Aula</label>
                     <div class="input">
                         <span class="form_icon"><i class="fas fa-store-alt"></i></span>
                         <select name="aula" id="aulaGrupo">`;
@@ -206,7 +206,7 @@ document.querySelector('#addGrupo').addEventListener('click',obtenerMaterias);
                     </div>
                 </div>
                 <div>
-                    <label class="form-Label">Capacidad</label>
+                    <label class="form_Label">Capacidad</label>
                     <div class="input">
                         <span class="form_icon"><i class="fas fa-cloud"></i></span>
                         <input type="number" name="capacidad" id="capacidadGrupo" value="" placeholder="Capacidad">
