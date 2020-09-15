@@ -2,7 +2,7 @@
 <div class="contenedor">
     <h1 class="title">Docentes</h1>
     <div class="addbtn">
-        <button title="Agregar Docente">
+        <button title="Agregar Docente" id="agregarDocente">
             <span><i class="fas fa-plus"></i></span>
             &nbsp;&nbsp;&nbsp;Agregar Docente
         </button>
