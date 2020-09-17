@@ -11,7 +11,25 @@ function listarUsuarios(){
         },
         "columns":[
             {"data":"Usuario"},
-            {"data":"Tipo_usuario"},
+            {"data":function(row,type,val,meta){
+                switch (row.Tipo_usuario) {
+                    case '1':
+                        return row.Tipo_usuario_filter = 'Administrador';
+                        break;
+                    case '2':
+                        return row.Tipo_usuario_filter = 'Alumno';
+                        break;
+                    case '3':
+                        return row.Tipo_usuario_filter = 'Administrativo';
+                        break;
+                    case '4':
+                        return row.Tipo_usuario_filter = 'Docente';            
+                        break;
+
+                    default:
+                        break;
+                }
+            }},
             {"defaultContent":"<button class='botonAccion eliminar' id='alumno_btnEliminar' title='Eliminar'><span><i class='fas fa-trash'></i></span></button>"}
         ],
         "order":[[0,"asc"]],

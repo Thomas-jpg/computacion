@@ -1,9 +1,11 @@
 <script src="../../js/usuarios.js"></script>
 <div class="contenedor">
     <h1 class="title">Usuarios</h1>
-    <div class="buttonGeneral">
-        <span><i claa="fas fa-plus"></i></span>
+    <div class="addbtn">
+        <button title="Agregar Usuario">
+        <span><i class="fas fa-plus"></i></span>
         &nbsp;&nbsp;&nbsp;Agregar Usuario
+        </button>
     </div>
     <div class="tabla">
         <table id="tablaUsuarios">

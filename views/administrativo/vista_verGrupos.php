@@ -40,4 +40,5 @@
             </tbody>
         </table>
     </div>
+    <div id="modalAgregarAlumnoGrupo" class="modal"></div>
 </div>
