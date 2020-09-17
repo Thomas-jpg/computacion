@@ -12,7 +12,7 @@ class Modal{
                     </div>
                     <div class="modal-footer">
                         <button class="close cancel">Cancelar</button>
-                        <button class="aceptar">Aceptar</button>
+                        <button class="aceptar" id="aceptar">Aceptar</button>
                     </div>
                 </div>`;
         }else{
@@ -33,7 +33,11 @@ class Modal{
 
     ocultarModal(modal){
           let ocultar=document.querySelector(`${modal}`);
-          
+        //   console.log(ocultar);
+        //   let contenido= ocultar.firstChild;
+        //   console.log(contenido);
+        //   ocultar.removeChild(contenido);
           ocultar.style.display='none';
     }
+    
 }

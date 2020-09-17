@@ -22,4 +22,5 @@
             </tbody>
         </table>
     </div>
+    <div id="modalAgregarDocente" class="modal"></div>
 </div>

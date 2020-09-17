@@ -51,8 +51,8 @@ function btn_agregarDocente(){
             </div>
         </div>
     `;
-    Modales.mostrarModal('Nuevo Docente',html,'50','info','#modalEditar');
-    Agregar_NuevoDocente('#modalEditar');
+    Modales.mostrarModal('Nuevo Docente',html,'50','info','#modalAgregarDocente');
+    Agregar_NuevoDocente('#modalAgregarDocente');
 }
 //guardar registro del nuevo docente
 function Agregar_NuevoDocente(objetivo){
@@ -62,6 +62,8 @@ function Agregar_NuevoDocente(objetivo){
     elemento= document.querySelector(`${objetivo}`);
     
     elemento.addEventListener('click',e =>{
+        e.preventDefault();
+        e.stopImmediatePropagation();
         if(e.target.classList.contains('aceptar')){
             const nombre=document.querySelector('#nombreDocente').value;
             const apellidoP=document.querySelector('#apellidoPDocente').value;
@@ -114,7 +116,10 @@ function Eliminar_Docente(idDocente,objetivo){
     let elemento = document.querySelector(`${objetivo}`);
 
     elemento.addEventListener('click',(e) =>{
+        e.preventDefault();
+        e.stopImmediatePropagation();
         if(e.target.classList.contains('aceptar')){
+
             fetch(`../../controllers/docentes/controlador_eliminarDocente.php?id=${idDocente}`)
             .then(res => res.json())
             .then(data => {
@@ -168,6 +173,8 @@ function btn_EditarDocente(tbody, table){
 function Actualizar_Docente(objetivo,idDocente){
     let elemento= document.querySelector(`${objetivo}`);
     elemento.addEventListener('click',e =>{
+        e.preventDefault();
+        e.stopImmediatePropagation();
         if(e.target.classList.contains('aceptar')){
             //obtenemos el valor de las variables
             let nombre, apellidoP, apellidoM, formEditarDocente;

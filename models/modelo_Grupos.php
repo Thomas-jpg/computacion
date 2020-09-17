@@ -63,6 +63,7 @@
                 $dataEliminado=array('tipo'=>'error',
                 'mensaje'=>'Ocurrió un error, intentelo más tarde.');
             }
+            $this->conexion->cerrar();
             return $dataEliminado;
         }
 

@@ -24,7 +24,7 @@
     function InfoUsuarios(){
         $dataUsuarios=array();
         //obtenemos la informacion de los usuarios
-        $sql="SELECT Id_usuario,Usuario,Foto";
+        $sql="SELECT Id_usuario,Usuario,Tipo_usuario,Foto FROM usuarios";
         $consulta=$this->conexion->conexion->query($sql);
         if($consulta){
             while($data = mysqli_fetch_assoc($consulta)){
