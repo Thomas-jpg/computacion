@@ -122,17 +122,20 @@ const aGrupo=document.querySelector('#addGrupo').addEventListener('click',obtene
                     <div class="input">
                         <span class="form_icon"><i class="fas fa-user"></i></span>
                         <input type="text" name="alumno" id="alumnoGrupo" value="" placeholder="Matricula del Alumno">
+                        <input type="hidden" name="grupo" id="grupoID" value="${id}">
                     </div>
                 </div>
             </div>
         `;
         Modales.mostrarModal('Agregar Alumno',html,'25','info','#modalAgregarAlumnoGrupo');
         });
-        Agregar_AlumnoGrupo(id, '#modalAgregarAlumnoGrupo');
+        console.log(id);
+        Agregar_AlumnoGrupo('#modalAgregarAlumnoGrupo');
     }
 
     //funcion para agregar al alumno al grupo correscondiente
-    function Agregar_AlumnoGrupo(id, objetivo){
+    function Agregar_AlumnoGrupo(objetivo){
+        
         let alerta= document.createElement('p');
         alerta.className="alerta-danger";
         const modal=document.querySelector(`${objetivo}`).addEventListener('click',(e)=>{
@@ -143,6 +146,7 @@ const aGrupo=document.querySelector('#addGrupo').addEventListener('click',obtene
             }else if(e.target.classList.contains('aceptar')){
                 console.log(e);
                     const matriculaAlumno= document.querySelector('#alumnoGrupo').value;
+                    const grupoid=document.querySelector('#grupoID').value;
                     //validamos que el campo no este vacio
                     if(matriculaAlumno === ''){
                         alerta.textContent='Todos los campos son obligatorios';
@@ -150,10 +154,11 @@ const aGrupo=document.querySelector('#addGrupo').addEventListener('click',obtene
                         return;
                     }
                     //verificamos que el alumno exista
-                    fetch(`../../controllers/general/controlador_verificarAlumno.php?id=${matriculaAlumno}&gpo=${id}`)
+                    console.log(grupoid);
+                    fetch(`../../controllers/general/controlador_verificarAlumno.php?id=${matriculaAlumno}&gpo=${grupoid}`)
                     .then(res => res.json())
                     .then(data => {
-                        console.log(data);
+                        console.log(grupoid);
                         if(!data.alumno){
                             alerta.textContent=`El alumno con la matricula ${matriculaAlumno} no existe.`;
                             document.querySelector(`${objetivo} .modal-body`).appendChild(alerta);
@@ -167,7 +172,7 @@ const aGrupo=document.querySelector('#addGrupo').addEventListener('click',obtene
                             return;
                         }
                         //agregamos el alumno al grupo
-                        guardarAlumno_Grupo(matriculaAlumno, id,objetivo);
+                       guardarAlumno_Grupo(matriculaAlumno, grupoid,objetivo);
                     })
                     .catch(error => console.log(error));
             }
