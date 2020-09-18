@@ -41,7 +41,7 @@
             $consulta=$this->conexion->conexion->query($sql);
             if ($consulta->num_rows > 0) {
                 $alumno = true;
-                $sql2="SELECT Matricula_Alumno FROM grupo_alumno WHERE Matricula_Alumno='$matricula' AND Id_grupo = '$grupo'";
+                $sql2="SELECT Matricula_Alumno,Id_grupo FROM grupo_alumno WHERE Matricula_Alumno=$matricula AND Id_grupo = '$grupo'";
                 $consulta2=$this->conexion->conexion->query($sql2);
 
                 if($consulta2->num_rows > 0 ){
