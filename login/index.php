@@ -38,10 +38,21 @@
                 </div>
                 <div class="registro">
                     <h3>REGISTRO USUARIO</h3>
-                    <input type="text" placeholder="Matricula" required>
-                    <input type="password" placeholder="Contraseña" required>
-                    <input type="password" placeholder="Confirmar Contraseña" required>
-                    <button class="loginBtn" type="submit" id="registrar">REGISTRAR</button><br>
+                    <form action="" id="formRegistro">
+                        <input type="text" name="usuario" placeholder="Matricula" required>
+                        <input type="password" name="pass" placeholder="Contraseña" required>
+                        <input type="password" name="confirmPass" placeholder="Confirmar Contraseña" required>
+                        <button class="loginBtn" type="submit" id="registrar">REGISTRAR</button>
+                    </form>
+                    <div class="sk-chase" id="spinner">
+                        <div class="sk-chase-dot"></div>
+                        <div class="sk-chase-dot"></div>
+                        <div class="sk-chase-dot"></div>
+                        <div class="sk-chase-dot"></div>
+                        <div class="sk-chase-dot"></div>
+                        <div class="sk-chase-dot"></div>
+                    </div>
+                    <br>
                     <a href="#" id="iniciarSesion"><i>Iniciar Sesión</i></a>
                 </div>
             </div>
