@@ -2,7 +2,7 @@
 <div class="contenedor">
     <h1 class="title">Usuarios</h1>
     <div class="addbtn">
-        <button title="Agregar Usuario">
+        <button title="Agregar Usuario" id="nuevoUsuario">
         <span><i class="fas fa-plus"></i></span>
         &nbsp;&nbsp;&nbsp;Agregar Usuario
         </button>
@@ -21,4 +21,5 @@
             </tbody>
         </table>
     </div>
+    <div id="modalAgregarUsuario" class="modal"></div>
 </div>

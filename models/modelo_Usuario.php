@@ -34,5 +34,33 @@
         }
         return $dataUsuarios;
     }
+    function RegistrarUsuario($usuario,$pass_hash,$tipo_usuario){
+        $dataUsuario= array();
+        $sql="INSERT INTO usuarios (usuario, password, tipo_usuario) VALUES ('$usuario','$pass_hash',$tipo_usuario)";
+        $consulta=$this->conexion->conexion->query($sql);
+        if($consulta){
+            $dataUsuario=array('tipo'=>'correcto','mensaje'=>'El usuario fue registrado correctamente.');
+        }else{
+            $dataUsuario=array('tipo'=>'error','mensaje'=>'Ocurrió un error, intentelo de nuevo');
+        }
+        $this->conexion->cerrar();
+
+        return $dataUsuario;
+    }
+    //eliminar usuario
+    function EliminarUsuario($id){
+        $dataEliminarUsuario= array();
+
+        $sql="DELETE FROM usuarios WHERE Id_usuario='$id'";
+        $consulta=$this->conexion->conexion->query($sql);
+        if($consulta){
+            $dataEliminarUsuario=array('tipo'=>'correcto','mensaje'=>'El usuario fue eliminado correctamente.');
+        }else{
+            $dataEliminarUsuario=array('tipo'=>'error','mensaje'=>'Ocurrió un error, intentelo de nuevo');
+        }
+        $this->conexion->cerrar();
+
+        return $dataEliminarUsuario;
+    }
 }
 ?>
