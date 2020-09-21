@@ -53,6 +53,26 @@
 
             return $dataAlumno;
         }
+        //funcion para encriptar las contraseñas
+        function HashPassword($password) 
+        {
+            $hash = password_hash($password, PASSWORD_DEFAULT);
+            return $hash;
+        }
+        //verificamos si el usuario ya esta registrado
+        function VerificarUsuario($usuario){
+            $existe= false;
+            $dataUsuario= array();
+            $sql="SELECT Usuario FROM usuarios WHERE Usuario='$usuario'";
+            $consulta=$this->conexion->conexion->query($sql);
+            if($consulta->num_rows > 0){
+                $existe= true;
+            }
+            $this->conexion->cerrar();
+            $dataUsuario=array('user' =>$existe);
+
+            return $dataUsuario;
+        }
     }
 
 ?>
