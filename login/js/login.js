@@ -6,6 +6,8 @@ const registrar=document.querySelector('#registrar');
 const expresion=/^[A-Za-z0-9_-]{4,30}$/;
 const modal=document.querySelector('#modalLogin');
 const span=document.querySelector('#close');
+const formRegistro= document.querySelector('#formRegistro');
+const spinner= document.querySelector('#spinner');
 //eventos
     registro.addEventListener('click',girarRegistro);
     sesion.addEventListener('click',girarSesion);
@@ -16,6 +18,7 @@ const span=document.querySelector('#close');
         }
     });
     modal.addEventListener('click',ocultarModal);
+    formRegistro.addEventListener('submit',btnCrearUsuario);
  //funciones   
 function girarSesion(){
     document.querySelector('.login-container .registro').style.transform='rotateY(180deg)';
@@ -103,3 +106,67 @@ function ocultarModal(event){
         modal.style.display='none';
     }
 }
+
+async function btnCrearUsuario(event){
+    event.preventDefault();
+    let form = new FormData(formRegistro);
+    //validamos que ningun campo esta vacio
+    for(let valor of form.values()){
+        if(valor === ''){
+            mostrarModal('Error','Todos los campos son obligatorios');
+            return;
+        }
+    }
+    //validamos que la contraseña sea valida
+    if(form.get('pass').length < 4){
+        mostrarModal('Error','La contraseña debe contener al menos cuatro caracteres');
+        return;
+    }
+    if(form.get('pass') !== form.get('confirmPass')){
+        mostrarModal('Error','Las contraseñas no coinciden, verifica e intentalo de nuevo.');
+        return;
+    }
+    //validamos que el usuario sea de un alumno y este inscrito
+    const alumno= await fetch(`../controllers/general/controlador_verificarAlumno.php?id=${form.get('usuario')}&gpo=0`);
+            const registrado= await alumno.json();
+            if(!registrado.alumno){
+                mostrarModal('Error',`El alumno con la matricula ${form.get('usuario')} no existe.`);
+                return;
+            }
+    //validamos que el usuario no haya sido previamente registrado
+    const user= await fetch(`../controllers/general/controlador_existeUsuario.php?user=${form.get('usuario')}`);
+        const existe =await user.json();
+        console.log(existe);
+        if(existe.user){
+            mostrarModal('Error',`El alumno con la matricula ${form.get('usuario')} ya esta registrado.`);
+                return;
+    }
+    //registramos al usuario
+    formRegistro.style.display='none';
+    spinner.style.display='block';
+    setTimeout(() => {
+        registrarUsuario(form.get('usuario'),form.get('pass'));
+        formRegistro.style.display='block';
+        spinner.style.display='none';
+    }, 3000);
+    
+}
+//funcion para registrar al nuevo usuario con privilegios solo para alumno
+    function registrarUsuario(usuario,pass){
+        let formNuevoUsuario= new FormData();
+        formNuevoUsuario.append('usuario',usuario);
+        formNuevoUsuario.append('pass',pass);
+        formNuevoUsuario.append('tipo',2);
+        fetch('../controllers/usuario/controlador_registrarUsuario.php',{
+            method:'POST',
+            body:formNuevoUsuario
+        }).then(res =>res.json())
+        .then(data =>{
+            if(data.tipo === "correcto"){
+                mostrarModal('Correcto',`${data.mensaje}`);
+                girarSesion();
+            }else{
+                mostrarModal('Error',`${data.mensaje}`);
+            }
+        }).catch(error => console.log(error)); 
+    }
