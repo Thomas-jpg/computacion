@@ -8,6 +8,7 @@
  const selectores=document.querySelectorAll('.mostrarContenedor');
  const inicio=document.querySelector('#inicio');
  const btnCerrar=document.querySelector('#cerrarMenu');
+ const seccionPerfil=document.querySelectorAll('.seccionPerfil');
  //recorremos todos los elementos
  for(let i=0;i < dropdown.length; i++){
      //detectamos el click de entre los demas elementos
@@ -43,7 +44,8 @@ window.addEventListener('resize',function(){
         sidebar.style.transform="translateX(0px)";
     }
 })
-
+//obtenemos los datos del usuario al cargar la pagina
+window.addEventListener('DOMContentLoaded',CargarUsuario);
 //  evento para recargar la pagina
 inicio.addEventListener('click',()=>{
    window.location.reload();
@@ -82,6 +84,44 @@ spanMenu.addEventListener('click',function(){
          }
      });
  }
+ //eventos para desplegar la vista del perfil de usuario
+ for (let i = 0; i < seccionPerfil.length; i++) {
+     seccionPerfil[i].addEventListener('click',(e)=>{
+         e.preventDefault();
+         mostrarVistas('container','../vista_verPerfil.php');
+     }); 
+ }
  function mostrarVistas(contenedor,contenido){
      $('#'+contenedor).load(contenido);
 }
+
+    function CargarUsuario(){
+        fetch('../../controllers/general/controlador_datosUsuario.php')
+            .then(res => res.json())
+            .then(data =>{
+               
+                document.querySelector("#nombreUsuario").innerHTML=`${data.user}`;
+                let nivelUsuario='';
+                switch (data.tipo) {
+                    case '1':
+                        nivelUsuario='Administrador';
+                        break;
+                    case '2':
+                        nivelUsuario='Estudiante';
+                        break;
+                    case '3':
+                        nivelUsuario='Secretario(a)';
+                        break;
+                    case '4':
+                        nivelUsuario='Docente';
+                        break;        
+                    default:
+                        break;
+                }
+                document.querySelector("#rolUsuario").innerHTML=nivelUsuario;
+                if (data.tipo !== '1') {
+                    document.querySelector("#usuariosAdmin").style.display='none';
+                }
+            })
+            .catch(error => console.log(error));
+    }

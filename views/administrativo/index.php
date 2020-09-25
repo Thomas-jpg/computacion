@@ -38,9 +38,9 @@
                 <div class="btnPerfil">
                     <i class="fas fa-user-circle"></i>
                     <div class="perfilBox">
-                        <p class="title">admin</p>
+                        <p class="title">Usuario</p>
                         <hr>
-                        <a href="">Perfil</a>
+                        <a href="" class="seccionPerfil">Perfil</a>
                         <hr>
                         <a href="../../controllers/usuario/controlador_cerrarSesion.php">Cerrar Sesión</a>
                     </div>
@@ -56,7 +56,7 @@
                     </div>
                     <div class="sidebar-header">
                         <div class="img-user">
-                            <img src="../../img/original.jpg" alt="user">
+                            <img src="../../img/original.jpg" alt="user" class="seccionPerfil">
                         </div>
                         <div class="info-user">
                             <span class="userName">
@@ -66,7 +66,7 @@
                                 Administrador
                             </span>
                             <span class="perfilUser">
-                                <a href=""><i class="fas fa-user-edit"></i>
+                                <a href="" class="seccionPerfil"><i class="fas fa-user-edit"></i>
                                 Perfil</a>
                             </span>
                         </div>
@@ -120,7 +120,7 @@
                                     </ul>
                                 </div>
                             </li>
-                            <li class="dropdown">
+                            <li class="dropdown" id="usuariosAdmin">
                                 <a href="#">
                                 <span><i class="fas fa-user-tie"></i>
                                     Usuarios</span>
