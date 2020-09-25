@@ -550,6 +550,76 @@ body{
     box-shadow: rgba(255,0,0,0.5) 1px 1px 2px, rgba(255,0,0,0.5) -1px 1px 2px;
     background-size: contain;
 }
+/* area de perfil de usuario */
+.vistaPerfil{
+    width: 25%;
+    min-width: 320px;
+    height: 100%;
+    margin-top: 2em;
+    margin-left: auto;
+    margin-right: auto;
+    background: url(../img/fondoPerfil.png);
+    background-repeat: none;
+    background-size: cover;
+    border-radius: 0.5em;
+}
+.areaPerfil{
+    padding: 1em;
+    background-color: rgba(0,150,199,.9);
+    border-radius: 0.5em;
+    color: var(--colorIcons);
+    text-align: center;
+    
+}
+.logoPerfil{
+    width: 120px;
+    height: 120px;
+    border: 3px solid var(--colorIcons);
+    position: relative;
+    margin-right: auto;
+    margin-left: auto;
+    border-radius: 5em;
+}
+.logoPerfil img{
+    width: 100%;
+    height: 100%;
+    border-radius: 5em;
+    object-fit: cover;
+}
+.logoPerfil .cambiarImg{
+    position: absolute;
+    width: 1.5em;
+    height: 1.5em;
+    padding: 0.2em 0.1em 0 0.1em;
+    top: 0;
+    right: 0;
+    background-color: rgba(0,150,199,1);
+    border: 3px solid var(--colorIcons);
+    border-radius: 1em;
+    cursor: pointer;
+}
+.informacionPerfil{
+    padding: 0.5em 0;
+    font-weight: bold;
+    text-transform: uppercase;
+}
+.informacionPerfil i{
+    color: rgba(255, 250, 250,.5);
+}
+.cambiarPassPerfil{
+    margin-bottom: 2em;
+}
+.cambiarPassPerfil button{
+    background-color: var(--colorIcons);
+    border-radius: 0.5em;
+    border: none;
+    padding: 0.5em 1em;
+    color: rgba(0,150,199,1);
+    font-weight: bold;
+    box-shadow: rgba(255, 250, 250,.5) 2px 2px 2px,  rgba(255, 250, 250,.5) -2px 2px 2px;
+    cursor: pointer;
+}
+/* area de perfil de usuario */
 /*medias querys*/ 
 /* @media screen and (max-width: 480px){
     body{

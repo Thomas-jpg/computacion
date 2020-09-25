@@ -73,6 +73,49 @@
 
             return $dataUsuario;
         }
+        //obtenemos la ruta de imagen de usuario correspondiente
+        function ObtenerRutaImg($id){
+            $dataRuta=array();
+
+            $sql="SELECT Foto FROM usuarios WHERE Id_usuario='$id'";
+            $consulta=$this->conexion->conexion->query($sql);
+            if($consulta){
+                while($ruta = mysqli_fetch_assoc($consulta)){
+                    $dataRuta[]=$ruta;
+                }
+                $this->conexion->cerrar();
+            }
+            return $dataRuta;
+        }
+        //verificamos que la contraseña anterior sea valida
+        function VerificarContra($id,$pass){
+            $valido= false;
+            $sql="SELECT Password FROM usuarios WHERE Id_usuario = '$id'";
+            $consulta=$this->conexion->conexion->query($sql);
+            if ($consulta) {
+            while($consulta_vu=mysqli_fetch_assoc($consulta)){
+                if(password_verify($pass,$consulta_vu["Password"])){
+                    $valido= true;
+                }
+            }
+            $this->conexion->cerrar();
+            }
+            return $valido;
+        }
+        //actualizamos la contraseña del usuario
+        function ActualizarPass($id,$pass){
+            $dataPass=array();
+            $sql="UPDATE usuarios SET Password='$pass' WHERE Id_usuario = '$id'";
+            $consulta=$this->conexion->conexion->query($sql);
+            if($consulta){
+                $dataPass=array('tipo'=>'correcto','mensaje'=>'La contraseña se actualizó correctamente.');
+            }else{
+                $dataPass=array('tipo'=>'error','mensaje'=>'Ocurrió un error, intentalo de nuevo, o más tarde.');
+            }
+            $this->conexion->cerrar();
+
+            return $dataPass;
+        }
     }
 
 ?>

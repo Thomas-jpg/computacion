@@ -192,7 +192,7 @@ function listarUsuarios(){
 
         modal.addEventListener('click',(e)=>{
             e.preventDefault();
-            e.stopImmediatePropagation();
+            
             if(e.target.classList.contains('aceptar')){
                 fetch(`../../controllers/usuario/controlador_eliminarUsuario.php?id=${id}`)
                 .then(res => res.json())

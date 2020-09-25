@@ -22,7 +22,7 @@ class Modal{
                         <h3>${titulo}</h3>
                     </div>
                     <div class="modal-body">
-                        <p>${mensaje}</p>
+                        ${mensaje}
                     </div>
                 </div>`;
         }

@@ -62,5 +62,17 @@
 
         return $dataEliminarUsuario;
     }
+    //guardar la ruta de la imagen del usuario
+    function GuardarRuta($ruta, $id){
+        $subido=false;
+        $sql="UPDATE usuarios SET Foto='$ruta' WHERE Id_usuario='$id'";
+        $consulta=$this->conexion->conexion->query($sql);
+        if($consulta){
+            $subido=true;
+        }
+        $this->conexion->cerrar();
+
+        return $subido;
+    }
 }
 ?>
