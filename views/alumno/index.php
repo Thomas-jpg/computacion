@@ -162,25 +162,8 @@
         </div>
         <div class="container" id="container">
             <div class="contenedor">
-                <h1 class="title">Consulta general de alumnos</h1>
-                <div class="tabla tablaPrincipal">
-                    <table id="tablaPrincipal">
-                        <thead>
-                            <tr>
-                                <th>Matricula</th>
-                                <th>Nombre</th>
-                                <th>Apellido Paterno</th>
-                                <th>Apellido Materno</th>
-                                <th>Año Ingreso</th>
-                                <th>Semestre Actual</th>
-                                <th>Acciones</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            
-                        </tbody>
-                    </table>
-                </div>
+                <h1 class="title">Seccion de Alumnos</h1>
+                
             </div>    
         </div>
     </div>
@@ -194,10 +177,7 @@
     <script src="../../js/librerias/jquery-3.5.1.js"></script>
     <script src="../../js/librerias/DataTables/datatables.min.js"></script>
     <script src="../../js/modal.js"></script>
-    <script src="../../js/principalAd.js"></script>
-    <script>
-        
-    </script>
+    <script src="../../js/principalAlu.js"></script> 
 </body>
 
 </html>
