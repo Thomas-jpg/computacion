@@ -108,6 +108,7 @@ spanMenu.addEventListener('click',function(){
                         break;
                     case '2':
                         nivelUsuario='Estudiante';
+                       
                         break;
                     case '3':
                         nivelUsuario='Secretario(a)';
