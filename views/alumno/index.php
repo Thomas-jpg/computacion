@@ -17,7 +17,6 @@
     <link rel="stylesheet" href="../../css/estilos.css">
     <link rel="stylesheet" href="../../css/fontawesome/css/all.css">
     <link rel="stylesheet" href="../../css/modal.css">
-    <link rel="stylesheet" href="../../js/librerias/DataTables/datatables.min.css">
     <title>Escuela de Ciencias</title>
 </head>
 
@@ -67,7 +66,7 @@
                             </span>
                             <span class="perfilUser">
                                 <a href="" class="seccionPerfil"><i class="fas fa-user-edit"></i>
-                                Perfil</a>
+                                    Perfil</a>
                             </span>
                         </div>
                     </div>
@@ -78,15 +77,15 @@
                             </li>
                             <li class="dropdown">
                                 <a href="#">
-                                <span><i class="fas fa-users"></i>
-                                    Grupos</span>
+                                    <span><i class="fas fa-users"></i>
+                                        Materias</span>
                                     <i class="fas fa-chevron-down"></i>
                                 </a>
                                 <div class="submenu">
                                     <ul>
                                         <li>
-                                            <a href="#" class="mostrarContenedor" data-id="1">
-                                                <i class="fas fa-person-booth"></i> Ver Grupos
+                                            <a href="#" class="mostrarContenedor" data-id="a1">
+                                                <i class="fas fa-person-booth"></i> Mis Materias
                                             </a>
                                         </li>
                                     </ul>
@@ -94,61 +93,25 @@
                             </li>
                             <li class="dropdown">
                                 <a href="#">
-                                <span><i class="fas fa-user-graduate"></i>
-                                    Alumnos</span>
+                                    <span><i class="fas fa-user-graduate"></i>
+                                        Mapa Curricular</span>
                                     <i class="fas fa-chevron-down"></i>
                                 </a>
                                 <div class="submenu">
                                     <ul>
-                                        <li><a href="#" class="mostrarContenedor" data-id="2">
-                                            <i class="fas fa-address-card"></i>Registrar</a>
+                                        <li><a href="#" class="mostrarContenedor" data-id="a2">
+                                                <i class="fas fa-address-card"></i>Generar Carga</a>
                                         </li>
                                     </ul>
                                 </div>
                             </li>
-                            <li class="dropdown">
-                                <a href="#">
-                                <span><i class="fas fa-user-tie"></i>
-                                    Docentes</span>
-                                    <i class="fas fa-chevron-down"></i>
-                                </a>
-                                <div class="submenu">
-                                    <ul>
-                                        <li><a href="#" class="mostrarContenedor" data-id="3">
-                                            <i class="fas fa-address-card"></i>Ver Docentes</a>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </li>
-                            <li class="dropdown" id="usuariosAdmin">
-                                <a href="#">
-                                <span><i class="fas fa-user-tie"></i>
-                                    Usuarios</span>
-                                    <i class="fas fa-chevron-down"></i>
-                                </a>
-                                <div class="submenu">
-                                    <ul>
-                                        <li><a href="#" class="mostrarContenedor" data-id="4">
-                                            <i class="fas fa-address-card"></i>Ver Usuarios</a>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </li>
+                           
                             <br>
                             <li class="menu-header">
                                 <span>Extras</span>
                             </li>
                             <li class="extras">
-                                <a href="#">Aulas</a>
-                            </li>
-                            <li class="extras">
-                                <a href="#">Calendario</a>
-                            </li>
-                            <li class="extras">
-                                <a href="#">Formatos</a>
-                            </li>
-                            <li class="extras">
-                                <a href="#">Materias</a>
+                                <a href="#">Horario</a>
                             </li>
                         </ul>
                     </div>
@@ -162,22 +125,30 @@
         </div>
         <div class="container" id="container">
             <div class="contenedor">
-                <h1 class="title">Seccion de Alumnos</h1>
-                
-            </div>    
+                <h1 class="title" id="nombreAlumno">Bienvenido de nuevo: </h1>
+                <div class="mision-vision" id="misionVision">
+                    <div class="mision">
+                        <h1 class="title">MISIÓN</h1>
+                        <p>La Escuela de Ciencias es una unidad académica que tiene como misión formar profesionales en las áreas de Biología, Computación, Física o Matemáticas, con alto nivel de competencia, espíritu de investigación científica, críticos y éticos, mediante planes de estudio actualizados, pertinentes y de vanguardia; participar en el desarrollo científico y tecnológico a través de la investigación básica y aplicada; integrar redes científicas a nivel local, regional y nacional, divulgar la ciencia y tecnología, implementar programas y proyectos de intervención en los sectores público, privado y social, asesorar y/o capacitar a la población universitaria y externa en el campo de las ciencias; acciones que inciden favorablemente en educación, ambiente, economía y sociedad.</p>
+                    </div>
+                    <div class="vision">
+                        <h1 class="title">VISIÓN</h1>
+                        <p>Somos una Escuela con programas educativos pertinentes, acreditados, con una planta académica fortalecida y organizada en cuerpos académicos e infraestructura acorde a las necesidades de los programas, que goza de un reconocimiento a nivel nacional por la calidad profesional de sus egresados, las investigaciones científicas y/o tecnológicas, los programas y proyectos de intervención que contribuyen en el desarrollo estatal, aunado a la amplia labor de divulgación y capacitación, que se distingue por la estrecha vinculación con los sectores público, privado y social; con redes científicas que se han extendido al ámbito internacional, condiciones que permiten ofertar posgrados de calidad.</p>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
-    
+
     <!-- seccion modales -->
-        <div id="modalEditar" class="modal"></div>
-        <div id="modalEliminar" class="modal"></div>
-        <div id="modalRespuesta" class="modal"></div>
+    <div id="modalEditar" class="modal"></div>
+    <div id="modalEliminar" class="modal"></div>
+    <div id="modalRespuesta" class="modal"></div>
     <!-- seccion modales -->
     <script src="../../js/nav.js"></script>
     <script src="../../js/librerias/jquery-3.5.1.js"></script>
-    <script src="../../js/librerias/DataTables/datatables.min.js"></script>
     <script src="../../js/modal.js"></script>
-    <script src="../../js/principalAlu.js"></script> 
+    <script src="../../js/principalAlu.js"></script>
 </body>
 
 </html>

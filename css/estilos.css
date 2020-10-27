@@ -297,6 +297,7 @@ body{
 .contenedor{
     padding-left: 1.5em;
     padding-right: 1.5em;
+    overflow: hidden;
 }
 .title{
     text-transform: capitalize;
@@ -620,6 +621,207 @@ body{
     cursor: pointer;
 }
 /* area de perfil de usuario */
+/* estilos para el area de alumno */
+.mpCurricular{
+    border-spacing: 5px 5px;
+    border-radius: 0.5em;
+    color: black;
+}
+.mpCurricular td,.mpCurricular th{
+    border-radius: 0.35em;
+    text-align: center;
+}
+.fases{
+    background-color: #F39C12;
+	box-shadow: #D68910 -3px 3px 5px;
+    text-align: center;
+    padding: 0.2em 0;
+}
+.fases:nth-of-type(2){
+    background-color: #F9E79F;
+	box-shadow:#F4D03F -3px 3px 5px;
+}
+.fases:nth-of-type(3){
+    background-color:#F4D03F;
+	box-shadow: #D4AC0D -3px 3px 5px;
+}
+.fases:nth-of-type(4){
+    background-color: #F1C40F;
+	box-shadow: #7D6608 -3px 3px 5px;
+}
+.areas{
+	background-color:#F5B041;
+	box-shadow: #D68910 -3px 3px 5px;
+}
+.areas-humano{
+    background-color:#AED6F1;
+    box-shadow: #5DADE2 -3px 3px 5px;
+}
+.areas-mate{
+    background-color:#7FB3D5;
+    box-shadow: #2980B9 -3px 3px 5px;
+}
+.areas-prog{
+    background-color:#5499C7; 
+    box-shadow: cyan -3px 3px 5px;
+}
+.areas-trat{
+    background-color:lightseagreen;
+    box-shadow: cyan -3px 3px 5px;
+}
+.areas-arq{
+    background-color:mediumpurple;
+    box-shadow: cyan -3px 3px 5px;
+}
+.areas-ent{
+    background-color:lightblue;
+    box-shadow: #5DADE2 -3px 3px 5px;
+}
+.label7{
+    border: 2px solid #5DADE2;
+    box-shadow: #5DADE2 3px 3px 5px;
+}
+.label8{
+    border: 2px solid olive;
+    box-shadow: olive 3px 3px 5px;
+}
+.label6{
+    border: 2px solid #2980B9;
+    box-shadow: #2980B9 3px 3px 5px;
+}
+.label5{
+    border: 2px solid #5499C7;
+    box-shadow: #5499C7 3px 3px 5px;
+}
+.label4{
+    border: 2px solid  lightseagreen;
+    box-shadow:  lightseagreen 3px 3px 5px;
+}
+.label3{
+    border: 2px solid  mediumpurple;
+    box-shadow:  mediumpurple 3px 3px 5px;
+}
+.label2{
+    border: 2px solid lightblue;
+    box-shadow:  lightblue 3px 3px 5px;
+}
+.label2,.label3,.label4,.label5,.label6,.label7,.label8{
+    padding: 0.2em 0.1em;
+    cursor: pointer;
+    transition: background-color 0.2s ease-in,transform 0.1s;
+}
+.label2:hover,.label3:hover,.label4:hover,.label5:hover,.label6:hover,.label7:hover,.label8:hover{
+    background-color: dodgerblue;
+    transform: scale(1.1);
+}
+.mapa-top{
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    align-content: center;
+}
+.status-materias{
+    background-color: rgba(72,202,228,.9);
+    color: var(--colorIcons);
+    border-radius: 0.5em;
+    padding: 0.5em 1em;
+    font-weight: bold;
+    height: 50%;
+    margin-top: auto;
+    margin-bottom: auto;
+    line-height: initial;
+}
+.status-materias span:first-child > i{
+    color:blue;
+}
+.status-materias span:nth-child(2) > i{
+    color:yellow;
+}
+.status-materias span:nth-child(3) > i{
+    color:green;
+}
+.status-materias span:nth-child(4) > i{
+    color:red;
+}
+.aceptar-carga{
+    width: 750px;
+    min-width: 320px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 2em;
+    background-color: rgba(56,116,166,.8);
+    display: flex;
+    flex-wrap: nowrap;
+    justify-content: space-between;
+    border-radius: 1em;
+}
+.aceptar-carga span{
+    display:block;
+    font-size: 2em;
+    font-weight: bold;
+    color: rgba(253, 255, 126, 0.9);
+    background-color: rgba(15,14,14,.5);
+    padding: 0.5em;
+    border-radius: 0.5em 0 0 0.5em;
+}
+.aceptar-carga p{
+    text-align: center;
+    font-weight: 500;
+}
+.btn-cargaCurricular{
+    border-radius: 0 1em 1em 0;
+    color: var(--colorIcons);
+    background-color:  #5DADE2;
+    font-weight: bold;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.5s ease-in-out;
+}
+.btn-cargaCurricular:hover{
+    background-color: rgba(15,14,14,.5);
+}
+.eliminar-mat{
+    border: none;
+    padding: 0.5em 0.7em;
+    border-radius: 1em;
+    color: var(--colorIcons);
+    font-weight: 900;
+    background-color: red;
+    cursor: pointer;
+}
+@keyframes mostrarNombre{
+    from{
+        transform: translateX(110%);
+    }
+    to{
+        transform: translateX(0);
+    }
+}
+.mision-vision{
+    display: flex;
+    justify-content: space-around;
+    background: url(../img/portada_slider-2.jpg);
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+    padding: 1em;
+}
+.mision, .vision{
+    display: flex;
+    width: 600px;
+    min-width: 320px;
+    margin: 2em 1.5em 2em 1.5em;
+    padding: 0.5em;
+    justify-content: space-around;
+    background-color: rgba(255, 255, 255, 0.8);
+   border-radius: 5px;
+}
+.mision-vision p{
+    margin-top: 3em;
+    margin-left: 5px;
+    margin-right: 5px;
+    text-align: justify;
+}
+/* estilos para el area de alumno */
 /*medias querys*/ 
 /* @media screen and (max-width: 480px){
     body{
