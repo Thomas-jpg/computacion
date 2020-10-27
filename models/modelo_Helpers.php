@@ -116,6 +116,88 @@
 
             return $dataPass;
         }
+        //obtenemos los datos de las materias del alumno loggeado
+        function DatosMaterias($matricula){
+            $dataMateria=array();
+            $sql="SELECT Matricula_Materia,Estado_Materia FROM materia_alumno WHERE Matricula_Alumno='$matricula'";
+            $consulta=$this->conexion->conexion->query($sql);
+            if ($consulta) {
+                while($consulta_mat=mysqli_fetch_assoc($consulta)){
+                    $dataMateria[]=$consulta_mat;
+                }
+                $this->conexion->cerrar();
+            }
+            return $dataMateria;
+        }
+        //verificamos que la materia seleccionada este seriada o no
+        function MateriaRequisitos($materia,$usuario){
+            $dataSeriada=array();
+            $sql="SELECT Requisito_Obligatorio FROM requisito_materias WHERE Materia='$materia'";
+            $consulta=$this->conexion->conexion->query($sql);
+            if($consulta->num_rows > 0){
+                $req=mysqli_fetch_assoc($consulta);
+                $requisito=$req['Requisito_Obligatorio'];
+                $sql2="SELECT Matricula_Materia FROM materia_alumno WHERE Matricula_Alumno='$usuario' AND Matricula_Materia='$requisito' AND Estado_Materia='APROBADO'";
+                $consulta2=$this->conexion->conexion->query($sql2);
+                if($consulta2->num_rows > 0){
+                    $dataSeriada=array('seriada'=>false);
+                }else{
+                    $dataSeriada=array('seriada'=>true);
+                }
+            }else{
+                $dataSeriada=array('seriada'=>false);
+            }
+            $this->conexion->cerrar();
+
+            return $dataSeriada;
+        }
+        //verificamos si debe materias y si estan disponibles para agregar, de lo contrario que siga con su carga
+        function ValidarReprobadas($materia,$usuario,$cargaLS){
+            $dataReprobada=array();
+            $sql="SELECT Matricula_Materia FROM materia_alumno WHERE Matricula_Alumno='$usuario' AND Estado_Materia='REPROBADO'";
+            $consulta=$this->conexion->conexion->query($sql);
+            if($consulta->num_rows > 0){
+                while($consulta_mat=mysqli_fetch_assoc($consulta)){
+                    foreach ($cargaLS as $matReprobada) {
+                        //validamos si la o las materias que debemos estan dentro del localstorage y de ser asi que nos permita seguir agregando
+                        if($consulta_mat['Matricula_Materia'] == $matReprobada['matricula']){
+                            $dataReprobada=array('reprobada'=> false);
+                        }
+                        //si la materia que seleccionamos es la una de las reprobadas que nos permita agregar 
+                        if ($consulta_mat['Matricula_Materia']==$materia) {
+                            $dataReprobada=array('reprobada'=> false);
+                        }else{
+                            //buscamos si hay grupos disponibles de la materia que se debe
+                            $sql2="SELECT Matricula_Materia FROM grupos WHERE Matricula_Materia='$consulta_mat[Matricula_Materia]'";
+                            $consulta2=$this->conexion->conexion->query($sql2);
+                            if($consulta2->num_rows > 0){
+                                $dataReprobada=array('reprobada'=> true);
+                            }else{
+                                $dataReprobada=array('reprobada'=> false);
+                            }
+                        }
+                    }
+                    
+                } 
+            }else{
+                $dataReprobada=array('reprobada'=> false);
+            }
+            $this->conexion->cerrar();
+            return $dataReprobada;
+        }
+        //retornamos los grupos disponibles de acuerdo a la materia seleccionada
+        function GpoDisponiblesMapa($materia){
+            $dataGpos=array();
+            $sql="SELECT materias.Nombre, materias.Creditos, grupos.Id_grupo, grupos.Aula, grupos.Capacidad, docente.Nombre_Docente, docente.Apellido_P, docente.Apellido_M FROM materias,grupos, docente WHERE grupos.Id_Docente=docente.Id_Docente AND grupos.Matricula_Materia='$materia' AND materias.Matricula_Materia= '$materia'";
+            $consulta=$this->conexion->conexion->query($sql);
+            if($consulta){
+                while($consulta_gpos=mysqli_fetch_assoc($consulta)){
+                    $dataGpos[]=$consulta_gpos;
+                }
+                $this->conexion->cerrar();
+            }
+            return $dataGpos;
+        }
     }
 
 ?>

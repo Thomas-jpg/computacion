@@ -78,7 +78,13 @@ spanMenu.addEventListener('click',function(){
                 break; 
             case '4':
                 mostrarVistas('container','vista_verUsuarios.php');
+                break;
+            case 'a1':
+                mostrarVistas('container','vista_materiasAlumno.php');
                 break;       
+            case 'a2':
+                mostrarVistas('container','vista_mapaCurricular.php');
+                break;           
              default:
                  break;
          }
