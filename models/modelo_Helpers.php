@@ -198,6 +198,18 @@
             }
             return $dataGpos;
         }
+        //retornamos los datos de un grupo en especifico
+        function InfoGrupo($idgrupo){
+            $dataGrupo=array();
+            $sql="SELECT m.Nombre,m.Matricula_Materia FROM materias m, grupos g WHERE m.Matricula_Materia=g.Matricula_Materia AND g.Id_grupo='$idgrupo'";
+            $consulta=$this->conexion->conexion->query($sql);
+            if($consulta){
+                $grupo=mysqli_fetch_assoc($consulta);
+                $dataGrupo[]=$grupo;
+            }
+            $this->conexion->cerrar();
+            return $dataGrupo;
+        }
     }
 
 ?>

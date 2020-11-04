@@ -15,6 +15,9 @@ body{
 .capitalize{
     text-transform: capitalize;
 }
+.justificar{
+    text-align: justify;
+}
 /* fuente para titulos */
 @font-face{
     src: url(../fonts/romance_fatal_serif/romance_fatal_serif_JC_Fonts.ttf);
@@ -822,6 +825,97 @@ body{
     text-align: justify;
 }
 /* estilos para el area de alumno */
+
+/* estilos para el area de docente */
+.actaExamen{
+    width: 850px;
+    height: 950px;
+    background-color: #e3e6ec;
+    box-shadow: 18px 18px 20px #d1d9e6,
+    -18px -18px 20px #ffffff;
+    text-align: center;
+    padding: 1em;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 3em;
+    position: relative;
+}
+.actaExamen table{
+    border-collapse: collapse;
+    table-layout: auto;
+    width: 100%;
+}
+.borde{
+    border: solid 1px black;
+}
+.actaExamen-codigo{
+    max-width: 200px;
+}
+.actaExamen-directivos{
+    display: grid;
+    grid-template-columns: repeat(3,1fr);
+    grid-template-rows: auto;
+    grid-template-areas: 
+        "presidente secretario sinodal"
+        "name-pres name-secr name-sino"
+    ;
+    justify-items: center;
+    align-items: center;
+}
+.actaExamen-alumnos{
+    display: grid;
+    grid-template-columns: 1fr 3fr 1fr 1fr 1fr;
+    grid-template-rows: auto;
+    gap: 10px 5px;
+    justify-items: center;
+    align-items: center;
+}
+.item-1,.item-2,.item-3,.item-4,.item-5,.item-6{
+    width: 100%;
+    height: 100%;
+}
+.item-2,.item-3{
+    border-top: 1px solid black;
+    border-right: 1px solid black;
+    border-bottom: 1px solid black;
+}
+.item-5,.item-6{
+    border-bottom: 1px solid black;
+    border-right: 1px solid black;
+}
+.item-1{
+    border: 1px solid black;
+    grid-area: presidente;
+}
+.item-2{
+    grid-area:secretario;
+}
+.item-3{
+    grid-area: sinodal;
+}
+.item-4{
+    border-left: 1px solid black;
+    border-right: 1px solid black;
+    border-bottom: 1px solid black;
+    grid-area: name-pres;
+}
+.item-5{
+    grid-area: name-secr;
+}
+.item-6{
+    grid-area: name-sino;
+}
+.footer{
+    position: absolute;
+    bottom: 2em;
+    right: 1em;
+    left: 1em;
+}
+.actaExamen-fechaGeneracion{
+    font-size: smaller;
+    text-align: right;
+}
+/* estilos para el area de docente */
 /*medias querys*/ 
 /* @media screen and (max-width: 480px){
     body{
