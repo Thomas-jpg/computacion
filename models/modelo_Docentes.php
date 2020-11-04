@@ -64,5 +64,45 @@
 
             return $dataEliminadoDocente;
         }
+
+        function DatosDocente($id){
+            $dataDocente=array();
+            $sql="SELECT Nombre_Docente,Apellido_P FROM docente WHERE Id_Docente='$id' LIMIT 1";
+            $consulta=$this->conexion->conexion->query($sql);
+            if($consulta){
+                $dataDocente[]=mysqli_fetch_assoc($consulta);
+            }
+            $this->conexion->cerrar();
+
+            return $dataDocente;
+        }
+
+        function GruposDocente($id){
+            $gruposDocente=array();
+            //obtenemos la informacion de los grupos disponibles para cada docente
+            $sql="SELECT g.Id_grupo,g.Capacidad, d.Nombre_Docente, d.Apellido_P, d.Apellido_M, m.Nombre ,a.Nombre_Aula FROM grupos g, docente d, materias m ,aulas a WHERE m.Matricula_Materia=g.Matricula_Materia AND g.Id_Docente=$id  AND d.Id_Docente=$id AND g.Aula = a.Id_Aula;";
+            $consulta=$this->conexion->conexion->query($sql);
+            if($consulta){
+                while($data = mysqli_fetch_assoc($consulta)){
+                    $gruposDocente["data"][]=$data;
+                }
+                $this->conexion->cerrar();
+            }
+            return $gruposDocente;
+        }
+
+        function AlumnoGpoDocente($id){
+            $dataGrupos=array();
+            //obtenemos los alumnos dentro del grupo en cuestion
+            $sql="SELECT alumno.Matricula_Alumno,alumno.Nombre,alumno.Apellido_P,alumno.Apellido_M FROM alumno,grupo_alumno WHERE alumno.Matricula_Alumno=grupo_alumno.Matricula_Alumno AND grupo_alumno.Id_grupo='$id'";
+            $consulta=$this->conexion->conexion->query($sql);
+            if($consulta){
+                while($data = mysqli_fetch_assoc($consulta)){
+                    $dataGrupos["data"][]=$data;
+                }
+                $this->conexion->cerrar();
+            }
+            return $dataGrupos;
+        }
     }
 ?>

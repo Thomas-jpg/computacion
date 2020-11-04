@@ -328,5 +328,9 @@ $(document).ready(function(){
             Modales.ocultarModal('#modalRespuesta');
         }
     });
+    //bloquea el boton de retroceso del boton del navegador
+    window.location.hash="no-back-button";
+    window.location.hash="Again-No-back-button";//esta linea es necesaria para chrome
+    window.onhashchange=function(){window.location.hash="no-back-button";}
     
     
